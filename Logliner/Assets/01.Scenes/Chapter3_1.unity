@@ -1326,6 +1326,8 @@ MonoBehaviour:
   - {fileID: 658439652}
   - {fileID: 1571033374}
   - {fileID: 1585306314}
+  heart: {fileID: 21300000, guid: 0e40cd3103d6f424bbae0054bb028643, type: 3}
+  empty_heart: {fileID: 21300000, guid: fd19ca460eecfaa4a91f702fce7f8e65, type: 3}
 --- !u!1 &1308992830
 GameObject:
   m_ObjectHideFlags: 0
