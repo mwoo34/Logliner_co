@@ -34,18 +34,22 @@ public class SceneLoader : Singleton<SceneLoader>
         OnLoadBegin.Invoke();
         yield return screenFader.StartFadeIn();
         yield return StartCoroutine(UnloadCurrent());
-        // for testing
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3.0f);// for testing
         yield return StartCoroutine(LoadNew(sceneName));
-        yield return screenFader.StartFadeOut();
 
-        OnLoadEnd?.Invoke();
-
-
-        isLoading = false;
 		yield return null;
     }
 
+    private IEnumerator LoadEnd()
+    {
+        yield return new WaitForSeconds(1.0f);// for testing
+        //씬이 로드가 완료 되면 fade out
+        screenFader.StartFadeOut();
+        OnLoadEnd?.Invoke();
+        isLoading = false;
+        yield return null;
+
+    }
     private IEnumerator UnloadCurrent()
     {
         AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
@@ -57,13 +61,13 @@ public class SceneLoader : Singleton<SceneLoader>
     private IEnumerator LoadNew(string sceneName)
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
         yield return null;
     }
 
     private void SetActiveScene(Scene scene, LoadSceneMode mode)
     {
         SceneManager.SetActiveScene(scene);
+        if(isLoading)
+            StartCoroutine(LoadEnd());
     }
 }
-

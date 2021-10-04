@@ -6,9 +6,10 @@ public class MissionCtrl : MonoBehaviour
 {
     public Sprite sp;
     public GameObject mission;
+    public GameObject mission_guide;
+    public GameObject accept_btn;
     private bool active = false;
     private bool missionGuide = false;
-    public GameObject btn;
 
     void Start()
     {
@@ -19,9 +20,10 @@ public class MissionCtrl : MonoBehaviour
     {
         mission.SetActive(active);
         if (missionGuide) {
-            mission.GetComponent<SpriteRenderer>().sprite = sp;
-            mission.SetActive(true);
-             
+            //mission.GetComponent<SpriteRenderer>().sprite = sp;
+            mission.SetActive(!missionGuide);
+            mission_guide.SetActive(missionGuide);
+            accept_btn.SetActive(true);
         }
     }
 

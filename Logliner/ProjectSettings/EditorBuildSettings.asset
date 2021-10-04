@@ -9,15 +9,24 @@ EditorBuildSettings:
     path: Assets/01.Scenes/SettingXR.unity
     guid: 7d2d919db2c8291468539b2c9c7fb122
   - enabled: 1
+    path: Assets/01.Scenes/Chapter00.unity
+    guid: d538bbee956c12245b60f4418915f476
+  - enabled: 1
     path: Assets/01.Scenes/Chapter01.unity
     guid: f2ee4aa5ab769874f8ec12e5da2f8557
   - enabled: 1
     path: Assets/01.Scenes/Chapter02.unity
     guid: 06c3d3185f8df4943ba5f56ee0ae98a4
   - enabled: 1
+    path: Assets/01.Scenes/Chapter03_00.unity
+    guid: 52a3051672c674a4da37653d5e96ad38
+  - enabled: 1
+    path: Assets/01.Scenes/Chapter3_1.unity
+    guid: 4fb9b6c47511504498af63f26f23a972
+  - enabled: 0
     path: Assets/01.Scenes/Chapter03.unity
     guid: 81a10ecfbabf80c4fa6d3e030bc88115
-  - enabled: 1
+  - enabled: 0
     path: Assets/01.Scenes/Chapter04.unity
     guid: b487d1f0d26c6e446867afae488274e6
   m_configObjects:
