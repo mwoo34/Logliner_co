@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class HeadCollider : MonoBehaviour
 {
-    public GameObject[] hearts;
+    public GameObject[] rock_hearts;
     public Sprite heart;
     public Sprite empty_heart;
-    public int hp_cnt;
+    private int hp_count;
 
+    void Start() {
+        rock_hearts = GameObject.Find("Wall").GetComponent<WallCtrl>().hearts;
+    }
+    
     void OnCollisionEnter(Collision coll) {
-        
         if (coll.collider.CompareTag("ROCKS")) {
+            hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;  
             Destroy(coll.gameObject);
-            if (hp_cnt > 0) {
-                hearts[hp_cnt - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
-                hp_cnt--;
+            if (hp_count > 0) {
+                rock_hearts[hp_count - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
+                //hp_count--;
+                GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount -= 1;
             }
         }
     }

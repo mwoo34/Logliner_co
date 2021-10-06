@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    public GameObject[] hearts;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +14,5 @@ public class Cube : MonoBehaviour
     void Update()
     {
         transform.position += Time.deltaTime * transform.forward * 2;
-        
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20749143, g: 0.21147497, b: 0.14576834, a: 1}
+  m_IndirectSpecularColor: {r: 0.20749128, g: 0.21147479, b: 0.14576818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -331,7 +331,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2726,10 +2726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c79ee4bb898a084aa52a41d23cf5427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearts: []
-  heart: {fileID: 0}
-  empty_heart: {fileID: 0}
-  hp_count: 5
+  rock_hearts: []
+  heart: {fileID: 21300000, guid: 0e40cd3103d6f424bbae0054bb028643, type: 3}
+  empty_heart: {fileID: 21300000, guid: fd19ca460eecfaa4a91f702fce7f8e65, type: 3}
 --- !u!1 &1634164384
 GameObject:
   m_ObjectHideFlags: 0
