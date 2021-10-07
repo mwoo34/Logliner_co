@@ -8,7 +8,7 @@ public class GameCtrl : MonoBehaviour
     public GameObject resumeMsg;
     public int heartCount = 5;
     private int remainRound = 4;
-    private bool isGameOver;
+    private bool isGameOver = false;
     public bool changeHeart = false;
 
     private AudioSource audio;
@@ -25,7 +25,7 @@ public class GameCtrl : MonoBehaviour
                 //CancelInvoke("CreateMonster");
                 Debug.Log("Loss All Heart");
                 audio.Stop();
-                isGameOver = false;
+                //IsGameOver = false;
                 ResumeGame();
             }
         }
@@ -44,6 +44,7 @@ public class GameCtrl : MonoBehaviour
     void ResumeGame() {
         //StopAllCoroutines();
         isGameOver = false;
+        IsGameOver = false;
         resumeMsg.SetActive(true);
         changeHeart = true;
     }

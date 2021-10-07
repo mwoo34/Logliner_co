@@ -20,9 +20,14 @@ public class SpawnerPlat : MonoBehaviour
         if (create) {
             StartCoroutine(MakePlat());
         }
-        if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount == 0) {
-            Time.timeScale = 0;
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount == 0) 
+        {
+            // if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver == false) 
+            // {
+            //     GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
+            //     Time.timeScale = 0;
+            //     Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            // }
             GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
         }
     }
