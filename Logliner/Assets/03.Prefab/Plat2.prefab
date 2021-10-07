@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2613934001498986301}
   - component: {fileID: 307783283925825327}
   - component: {fileID: 728462489507424967}
-  - component: {fileID: 3990835531333920374}
+  - component: {fileID: 1763860908625283687}
   m_Layer: 0
   m_Name: Plat2
   m_TagString: Untagged
@@ -185,7 +185,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3990835531333920374
+--- !u!114 &1763860908625283687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268783442883020363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d745aeabe127f9b42b45ccc0f2700543, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b1e885bb9e3e33498a0670fc3c5913f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3220192879357482132

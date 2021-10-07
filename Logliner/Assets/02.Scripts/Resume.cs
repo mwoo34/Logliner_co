@@ -28,11 +28,11 @@ public class Resume : MonoBehaviour
         //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
         
         //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
-        GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
+        //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
         for (int i = 0; i < 5; i++) {
             hearts[i].gameObject.GetComponent<SpriteRenderer>().sprite = heart;
         }
-
-        SceneLoader.Instance.LoadNewScene("Chapter3_1");
+        GameCtrl.instance.IsGameOver = false;
+        SceneLoader.Instance.LoadNewScene("Chapter03_1");
     }
 }

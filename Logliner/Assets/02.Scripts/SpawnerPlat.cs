@@ -9,18 +9,16 @@ public class SpawnerPlat : MonoBehaviour
     private bool create = true;
     void Start()
     {
-        GameObject plat = Instantiate(plats, points);
-        plat.transform.localPosition = Vector3.zero;
         StartCoroutine(MakePlat());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (create) {
-            StartCoroutine(MakePlat());
-        }
-        if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount == 0) 
+        // if (create) {
+        //     StartCoroutine(MakePlat());
+        // }
+        if (GameCtrl.instance.heartCount == 0) 
         {
             // if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver == false) 
             // {
@@ -28,17 +26,21 @@ public class SpawnerPlat : MonoBehaviour
             //     Time.timeScale = 0;
             //     Time.fixedDeltaTime = 0.02f * Time.timeScale;
             // }
-            GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
+            //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
+            //GameCtrl.instance.heartCount = 5;
+            create = false;
+            GameCtrl.instance.IsGameOver = true;
         }
     }
 
     IEnumerator MakePlat() {
         if (create) {
-            create = false;
-            yield return new WaitForSeconds(35.0f);
             GameObject plat = Instantiate(plats, points);
             plat.transform.localPosition = Vector3.zero;
+            create = false;
+            yield return new WaitForSeconds(25.0f);
             create = true;
+            StartCoroutine(MakePlat());
         }
     }
 }

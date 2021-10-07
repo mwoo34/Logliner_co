@@ -469,6 +469,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resumeMsg: {fileID: 1947669762}
   heartCount: 5
+  hpImages:
+  - {fileID: 386191372}
+  - {fileID: 2027560746}
+  - {fileID: 658439652}
+  - {fileID: 1571033374}
+  - {fileID: 1585306314}
   changeHeart: 0
 --- !u!4 &308526193
 Transform:
@@ -496,7 +502,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6f66e933392e3004e9a4ca46959c2c90, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.461
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2774,6 +2780,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 0
+  audio: {fileID: 0}
+  au: {fileID: 0}
 --- !u!1 &1911853786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,3 +3700,5 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 0
+  audio: {fileID: 0}
+  au: {fileID: 0}

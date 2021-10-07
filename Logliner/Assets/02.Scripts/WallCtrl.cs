@@ -9,15 +9,22 @@ public class WallCtrl : MonoBehaviour
     public Sprite empty_heart;
     private int hp_count;
 
+    void Start() {
+        hearts = GameCtrl.instance.hpImages;
+    }
+
     void OnCollisionEnter(Collision coll) {
-        hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
+        //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
+        hp_count = GameCtrl.instance.heartCount;
         if (coll.collider.CompareTag("CUBE")) {
             Destroy(coll.gameObject);
             if (hp_count > 0) {
                 //hearts[hp_count-1].SetActive(false);
-                hearts[hp_count-1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
+                //hearts[hp_count-1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
                 //hp_count--;
-                GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount -= 1;
+                //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount -= 1;
+                hearts[hp_count-1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
+                GameCtrl.instance.heartCount -= 1;
             }
         }
         

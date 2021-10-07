@@ -7,11 +7,15 @@ public class GameCtrl : MonoBehaviour
 {
     public GameObject resumeMsg;
     public int heartCount = 5;
+    public GameObject[] hpImages;
     private int remainRound = 4;
     private bool isGameOver = false;
     public bool changeHeart = false;
 
     private AudioSource audio;
+
+    // GameCtrl 인스턴스화를 위해 선언
+    public static GameCtrl instance;
 
     // 게임의 종료 여부를 저장할 프로퍼티
     public bool IsGameOver
@@ -30,6 +34,12 @@ public class GameCtrl : MonoBehaviour
             }
         }
     }
+
+    // GameCtrl 인스턴스화
+    void Awake() 
+    {
+        instance = this;    
+    }
     
     void Start()
     {
@@ -43,7 +53,7 @@ public class GameCtrl : MonoBehaviour
 
     void ResumeGame() {
         //StopAllCoroutines();
-        isGameOver = false;
+        //isGameOver = false;
         IsGameOver = false;
         resumeMsg.SetActive(true);
         changeHeart = true;
