@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameCtrl : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameCtrl : MonoBehaviour
     public int heartCount = 5;
     public GameObject[] hpImages;
     public GameObject[] slotImages;
+    //public Image[] hpImages;
+    //public Image[] slotImages;
     public int slotPos = 0;
     private int remainRound = 4;
     private bool isGameOver = false;

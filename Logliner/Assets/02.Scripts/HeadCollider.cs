@@ -1,27 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeadCollider : MonoBehaviour
 {
     public GameObject[] rock_hearts;
     public Sprite heart;
     public Sprite empty_heart;
+    public Image[] imgs;
     private int hp_count;
 
     void Start() {
-        //rock_hearts = GameObject.Find("Wall").GetComponent<WallCtrl>().hearts;
         rock_hearts = GameCtrl.instance.hpImages;
+        //imgs = GameCtrl.instance.hpImages;
     }
     
     void OnCollisionEnter(Collision coll) {
         if (coll.collider.CompareTag("ROCKS")) {
-            //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
             Destroy(coll.gameObject);
             hp_count = GameCtrl.instance.heartCount;
             if (hp_count > 0) {
-                rock_hearts[hp_count - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
+                //imgs[hp_count - 1].sprite = empty_heart;
+                rock_hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;
                 GameCtrl.instance.heartCount -= 1;
+                //rock_hearts[hp_count - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
                 //rock_hearts[hp_count - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
                 //hp_count--;
                 //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount -= 1;

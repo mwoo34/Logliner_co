@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MissionCtrl : MonoBehaviour
 {
-    public Sprite sp;
-    public GameObject mission;
-    public GameObject mission_guide;
+    public GameObject missionMsg;
+    public GameObject questMsg;
     public GameObject accept_btn;
     private bool active = false;
     private bool missionGuide = false;
@@ -18,11 +17,11 @@ public class MissionCtrl : MonoBehaviour
 
     void Update()
     {
-        mission.SetActive(active);
+        missionMsg.SetActive(active);
         if (missionGuide) {
             //mission.GetComponent<SpriteRenderer>().sprite = sp;
-            mission.SetActive(!missionGuide);
-            mission_guide.SetActive(missionGuide);
+            missionMsg.SetActive(!missionGuide);
+            questMsg.SetActive(missionGuide);
             accept_btn.SetActive(true);
         }
     }
