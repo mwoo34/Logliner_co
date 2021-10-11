@@ -8,6 +8,8 @@ public class GameCtrl : MonoBehaviour
     public GameObject resumeMsg;
     public int heartCount = 5;
     public GameObject[] hpImages;
+    public GameObject[] slotImages;
+    public int slotPos = 0;
     private int remainRound = 4;
     private bool isGameOver = false;
     public bool changeHeart = false;

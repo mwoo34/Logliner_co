@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20749128, g: 0.21147479, b: 0.14576818, a: 1}
+  m_IndirectSpecularColor: {r: 0.20749143, g: 0.21147497, b: 0.14576834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1134,6 +1134,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   au: {fileID: 0}
+  slot: []
+  slot_sp: []
 --- !u!82 &642749300
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1146,7 +1148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bd67030dd70797a4383a2ca5d097d3a9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1668,6 +1670,7 @@ GameObject:
   - component: {fileID: 967841546}
   - component: {fileID: 967841550}
   - component: {fileID: 967841551}
+  - component: {fileID: 967841552}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -2126,6 +2129,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   au: {fileID: 0}
+  slot: []
+  slot_sp: []
 --- !u!82 &967841551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2138,7 +2143,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bd67030dd70797a4383a2ca5d097d3a9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2222,6 +2227,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &967841552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967841544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b007aca7ae901734c8ca32c5710a41b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: []
+  slot_sp: []
 --- !u!1 &989497289
 GameObject:
   m_ObjectHideFlags: 0

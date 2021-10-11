@@ -29,9 +29,9 @@ public class Resume : MonoBehaviour
         
         //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
         //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
-        for (int i = 0; i < 5; i++) {
-            hearts[i].gameObject.GetComponent<SpriteRenderer>().sprite = heart;
-        }
+        // for (int i = 0; i < 5; i++) {
+        //     hearts[i].gameObject.GetComponent<SpriteRenderer>().sprite = heart;
+        // }
         GameCtrl.instance.IsGameOver = false;
         SceneLoader.Instance.LoadNewScene("Chapter03_1");
     }

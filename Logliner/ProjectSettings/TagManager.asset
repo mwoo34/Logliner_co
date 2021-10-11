@@ -9,6 +9,7 @@ TagManager:
   - CUBE
   - MISSION
   - ROCKS
+  - ITEMBOX
   layers:
   - Default
   - TransparentFX
