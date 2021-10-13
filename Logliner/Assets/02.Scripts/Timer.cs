@@ -21,6 +21,8 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (GameCtrl.instance.heartCount == 0)
+            gameObject.SetActive(false);
         guiTime =  startTime - Time.time;
         minutes = (int)guiTime / 60;
         seconds = (int)guiTime % 60;

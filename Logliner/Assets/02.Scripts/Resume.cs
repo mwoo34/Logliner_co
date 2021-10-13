@@ -22,17 +22,15 @@ public class Resume : MonoBehaviour
     }
 
     public void ChangeScene() {
-        Debug.Log("Resume Testing...");
         // Time.timeScale = 1;
         // Time.fixedDeltaTime = 0.02f * Time.timeScale;
         //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
-        
         //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
         //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = false;
         // for (int i = 0; i < 5; i++) {
         //     hearts[i].gameObject.GetComponent<SpriteRenderer>().sprite = heart;
         // }
-        GameCtrl.instance.IsGameOver = false;
+        //GameCtrl.instance.IsGameOver = false;
         SceneLoader.Instance.LoadNewScene("Chapter03_1");
     }
 }

@@ -20,16 +20,8 @@ public class SpawnerPlat : MonoBehaviour
         // }
         if (GameCtrl.instance.heartCount == 0) 
         {
-            // if (GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver == false) 
-            // {
-            //     GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
-            //     Time.timeScale = 0;
-            //     Time.fixedDeltaTime = 0.02f * Time.timeScale;
-            // }
-            //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().IsGameOver = true;
-            //GameCtrl.instance.heartCount = 5;
             create = false;
-            GameCtrl.instance.IsGameOver = true;
+            //GameCtrl.instance.IsGameOver = true;
         }
     }
 
@@ -38,7 +30,7 @@ public class SpawnerPlat : MonoBehaviour
             GameObject plat = Instantiate(plats, points);
             plat.transform.localPosition = Vector3.zero;
             create = false;
-            yield return new WaitForSeconds(25.0f);
+            yield return new WaitForSeconds(20.0f);
             create = true;
             StartCoroutine(MakePlat());
         }

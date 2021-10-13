@@ -5,32 +5,30 @@ using UnityEngine.UI;
 
 public class WallCtrl : MonoBehaviour
 {
+    // 하트 이미지 객체 받아오는 변수
     public GameObject[] hearts;
-    public Sprite heart;
+    // 바꿀 이미지 받아오는 변수
     public Sprite empty_heart;
-    public Image[] imgs;
+    // 실수 가능한 횟수 받아오는 변수
     private int hp_count;
 
-    void Start() {
+    void Start()
+    {
+        // 게임매니저에서 하트 객체 가져오기
         hearts = GameCtrl.instance.hpImages;
-        //imgs = GameCtrl.instance.hpImages;
     }
 
-    void OnCollisionEnter(Collision coll) {
-        //hp_count = GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount;
-        if (coll.collider.CompareTag("CUBE") || coll.collider.CompareTag("ITEMBOX")) {
+    // CUBE나 ITEMBOX를 베었을 때 하트 이미지를 빈 이미지로 교체하는 함수
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.CompareTag("CUBE") || coll.collider.CompareTag("ITEMBOX"))
+        {
             hp_count = GameCtrl.instance.heartCount;
             Destroy(coll.gameObject);
-            if (hp_count > 0) {
-                //imgs[hp_count - 1].sprite = empty_heart;
+            if (hp_count > 0)
+            {
                 GameCtrl.instance.heartCount -= 1;
-                //hearts[hp_count - 1].GetComponent<SpriteRenderer>().sprite = empty_heart;
-                hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;
-                //hearts[hp_count-1].SetActive(false);
-                //hearts[hp_count-1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
-                //hp_count--;
-                //GameObject.Find("GameCtrl").GetComponent<GameCtrl>().heartCount -= 1;
-                //hearts[hp_count-1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;
+                hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;     
             }
         }
         

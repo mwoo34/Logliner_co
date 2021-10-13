@@ -12,8 +12,12 @@ public class HeadCollider : MonoBehaviour
     private int hp_count;
 
     void Start() {
-        rock_hearts = GameCtrl.instance.hpImages;
+        //rock_hearts = GameCtrl.instance.hpImages;
         //imgs = GameCtrl.instance.hpImages;
+    }
+
+    void Update() {
+        rock_hearts = GameCtrl.instance.hpImages;
     }
     
     void OnCollisionEnter(Collision coll) {

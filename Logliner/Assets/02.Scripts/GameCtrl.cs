@@ -6,61 +6,120 @@ using TMPro;
 
 public class GameCtrl : MonoBehaviour
 {
-    public GameObject resumeMsg;
+    // 실수 가능한 횟수 담은 변수
     public int heartCount = 5;
+    // 하트 객체 담을 변수
     public GameObject[] hpImages;
+    // 슬롯 객체 담을 변수
     public GameObject[] slotImages;
-    //public Image[] hpImages;
-    //public Image[] slotImages;
+    public Sprite[] slot_sp;
+    // 현재 바뀔 슬롯 위치 값 담은 변수
     public int slotPos = 0;
-    private int remainRound = 4;
+    // 양 쪽 컨트롤이 같은 객체를 벨 때 ITEMBOX가 2개 베지 않도록 잠그는 변수
+    public bool _lock = true;
+
+    // 업무 재개 메시지 보관 변수
+    public GameObject resumeMsg;
+    // 업무 재개 가능한 횟수 변수
+    public int remainRound = 3;
+    
+    // 업무 남은 횟수 이미지 바꾸지 변수
+    public Sprite whiteSprite;
+    // 업무 남은 횟수 표시하는 객체 받아오기
+    public GameObject[] fuelBtn;
+    private bool gameOver = true;
+    // 게임 실패 상태 여부 변수
     private bool isGameOver = false;
     public bool changeHeart = false;
 
-    private AudioSource audio;
+    public int saveSlotPos;
+    public int saveRemainRound;
+    private bool isSave;
+
+    public AudioSource audio;
 
     // GameCtrl 인스턴스화를 위해 선언
     public static GameCtrl instance;
 
     // 게임의 종료 여부를 저장할 프로퍼티
-    public bool IsGameOver
-    {
-        get { return isGameOver; }
-        set
-        {
-            isGameOver = value;
-            if (isGameOver)
-            {
-                //CancelInvoke("CreateMonster");
-                Debug.Log("Loss All Heart");
-                audio.Stop();
-                //IsGameOver = false;
-                ResumeGame();
-            }
-        }
-    }
+    // public bool IsGameOver
+    // {
+    //     get { return isGameOver; }
+    //     set
+    //     {
+    //         isGameOver = value;
+    //         if (isGameOver)
+    //         {
+    //             Debug.Log("Loss All Heart");
+    //             audio.Stop();
+    //             ResumeGame();
+    //         }
+    //     }
+    // }
 
     // GameCtrl 인스턴스화
     void Awake() 
     {
-        instance = this;    
+        instance = this;
     }
     
+    // 내부 레지스터에 데이터를 가져와서 활성화 된 slot은 다시 활성화 하고
+    // 내부 레지스터 값 지움
     void Start()
     {
+        isSave = PlayerPrefs.HasKey("SlotPos");
+        if (isSave)
+        {
+            Debug.Log("저장된 데이터가 있습니다");
+            slotPos = PlayerPrefs.GetInt("SlotPos");
+            remainRound = PlayerPrefs.GetInt("RemainRound");
+            Debug.Log("현재 slotPos값 : " + slotPos);
+            for (int i = 0; i < slotPos; i++)
+            {
+                slotImages[i].GetComponent<Image>().sprite = slot_sp[i];
+            }
+        }
+        else
+        {
+            Debug.Log("저정된 데이터가 없습니다");
+        }
+        PlayerPrefs.DeleteAll();
         audio = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-
+        if (gameOver && heartCount == 0)
+        {
+            gameOver = false;
+            audio.Stop();
+            ResumeGame();
+        }
     }
 
+    // 5개 목숨을 다 잃고 나타나는 메시지창과 몇번째 시도인지에 따라 메시지창에
+    // 기회가 몇 번 남았는지 알리는 역할
     void ResumeGame() {
-        //StopAllCoroutines();
-        //isGameOver = false;
-        IsGameOver = false;
+        //IsGameOver = false;
         resumeMsg.SetActive(true);
-        changeHeart = true;
+        remainRound -= 1;
+        if (remainRound >= 0)
+        {
+            for (int i = 3; i > remainRound; i--)
+            {
+                fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
+            }
+        }
+        // PlayerPrefs.SetInt("SlotPos", slotPos);
+        // PlayerPrefs.SetInt("RemainRound", remainRound);
+        // PlayerPrefs.Save();
+
+        // if (remainRound > 0)
+        // {
+        //     fuelBtn[remainRound - 1].GetComponent<Image>().sprite = whiteSprite;
+        //     remainRound -= 1;
+        // }
+        //ChangeScene();
+        //changeHeart = true;
     }
 }
