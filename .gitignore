@@ -13,11 +13,13 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-Logliner_co/[Tt]emp
-Logliner_co/[Oo]bj
-Logliner_co/[Bb]uild
-Logliner_co/[Ll]ogs
-Logliner_co/Log
+Logliner/[Tt]emp
+Logliner/[Oo]bj
+Logliner/[Bb]uild
+Logliner/[Ll]ogs
+Logliner/Logs
+obj/
+Logs/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
