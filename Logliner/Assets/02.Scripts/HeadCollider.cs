@@ -8,12 +8,11 @@ public class HeadCollider : MonoBehaviour
     public GameObject[] rock_hearts;
     public Sprite heart;
     public Sprite empty_heart;
-    public Image[] imgs;
     private int hp_count;
 
-    void Start() {
-        //rock_hearts = GameCtrl.instance.hpImages;
-        //imgs = GameCtrl.instance.hpImages;
+    void Start()
+    {
+
     }
 
     void Update() {
@@ -25,7 +24,6 @@ public class HeadCollider : MonoBehaviour
             Destroy(coll.gameObject);
             hp_count = GameCtrl.instance.heartCount;
             if (hp_count > 0) {
-                //imgs[hp_count - 1].sprite = empty_heart;
                 rock_hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;
                 GameCtrl.instance.heartCount -= 1;
                 //rock_hearts[hp_count - 1].gameObject.GetComponent<SpriteRenderer>().sprite = empty_heart;

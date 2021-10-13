@@ -28,7 +28,8 @@ public class WallCtrl : MonoBehaviour
             if (hp_count > 0)
             {
                 GameCtrl.instance.heartCount -= 1;
-                hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;     
+                hearts[hp_count - 1].GetComponentInChildren<GameObject>().SetActive(false);
+                //hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;     
             }
         }
         
