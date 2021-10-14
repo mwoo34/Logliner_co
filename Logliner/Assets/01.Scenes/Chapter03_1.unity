@@ -1056,6 +1056,7 @@ MonoBehaviour:
   - {fileID: 52907844}
   saveSlotPos: 0
   saveRemainRound: 0
+  btn: {fileID: 0}
   audio: {fileID: 0}
 --- !u!4 &308526193
 Transform:
@@ -4185,7 +4186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779b0dd05512c6d4aafc977ae7ab6207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skybox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
+  _skybox: {fileID: 2100000, guid: 9d0abbfc5f02d2d40872f79b9a42ee58, type: 2}
 --- !u!4 &1523239783
 Transform:
   m_ObjectHideFlags: 0
