@@ -12,7 +12,7 @@ public class GameCtrl : MonoBehaviour
     public GameObject[] hpImages;
     // 슬롯 객체 담을 변수
     public GameObject[] slotImages;
-    public Sprite[] slot_sp;
+    //public Sprite[] slot_sp;
     public Texture[] slotTex;
     public RawImage[] slotRawImage;
     // 현재 바뀔 슬롯 위치 값 담은 변수
@@ -38,6 +38,8 @@ public class GameCtrl : MonoBehaviour
     public int saveRemainRound;
     private bool isSave;
 
+    public Button btn;
+
     public AudioSource audio;
 
     // GameCtrl 인스턴스화를 위해 선언
@@ -60,7 +62,7 @@ public class GameCtrl : MonoBehaviour
     // }
 
     // GameCtrl 인스턴스화
-    void Awake() 
+    void Awake()
     {
         instance = this;
     }
@@ -90,6 +92,7 @@ public class GameCtrl : MonoBehaviour
         audio = gameObject.GetComponent<AudioSource>();
     }
 
+    // 게임 실패 후 업무재개 화면
     void Update()
     {
         if (gameOver && heartCount == 0)
@@ -106,12 +109,21 @@ public class GameCtrl : MonoBehaviour
         //IsGameOver = false;
         resumeMsg.SetActive(true);
         remainRound -= 1;
-        if (remainRound >= 0)
+        if (remainRound > 0)
         {
             for (int i = 3; i > remainRound; i--)
             {
                 fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
             }
+
+        }
+        if (remainRound == 0)
+        {
+            for (int i = 3; i > remainRound; i--)
+            {
+                fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
+            }
+            
         }
         // PlayerPrefs.SetInt("SlotPos", slotPos);
         // PlayerPrefs.SetInt("RemainRound", remainRound);

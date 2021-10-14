@@ -11,10 +11,11 @@ public class HeadCollider : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
-    void Update() {
+    void Update()
+    {
         rock_hearts = GameCtrl.instance.hpImages;
     }
     
