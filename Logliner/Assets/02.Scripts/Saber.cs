@@ -13,10 +13,12 @@ public class Saber : MonoBehaviour
     public GameObject[] slot;
     // 바꿀 이미지 받아오는 변수
     public Sprite[] slot_sp;
+    public Texture[] slot_tex;
     
     void Start()
     {
         au = gameObject.GetComponent<AudioSource>();
+        slot_tex = GameCtrl.instance.slotTex;
     }
 
     void Update()
@@ -38,8 +40,9 @@ public class Saber : MonoBehaviour
                 // slot의 위치를 가져와서 해당 위치 이미지 교체하는 기능
                 int pos = GameCtrl.instance.slotPos;
                 if (pos < 3 && hit.collider.CompareTag("ITEMBOX")) 
-                {   
-                    slot[pos].GetComponent<Image>().sprite = slot_sp[pos];
+                {
+                    slot[pos].GetComponentInChildren<RawImage>().texture = slot_tex[pos];
+                    //slot[pos].GetComponent<Image>().sprite = slot_sp[pos];
                     GameCtrl.instance.slotPos += 1;
                 }
                 // 1초 정도 후에 lock을 false에서 true로 바꿔주는 함수

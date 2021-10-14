@@ -13,6 +13,8 @@ public class GameCtrl : MonoBehaviour
     // 슬롯 객체 담을 변수
     public GameObject[] slotImages;
     public Sprite[] slot_sp;
+    public Texture[] slotTex;
+    public RawImage[] slotRawImage;
     // 현재 바뀔 슬롯 위치 값 담은 변수
     public int slotPos = 0;
     // 양 쪽 컨트롤이 같은 객체를 벨 때 ITEMBOX가 2개 베지 않도록 잠그는 변수
@@ -29,8 +31,8 @@ public class GameCtrl : MonoBehaviour
     public GameObject[] fuelBtn;
     private bool gameOver = true;
     // 게임 실패 상태 여부 변수
-    private bool isGameOver = false;
-    public bool changeHeart = false;
+    //private bool isGameOver = false;
+    //public bool changeHeart = false;
 
     public int saveSlotPos;
     public int saveRemainRound;
@@ -76,7 +78,8 @@ public class GameCtrl : MonoBehaviour
             Debug.Log("현재 slotPos값 : " + slotPos);
             for (int i = 0; i < slotPos; i++)
             {
-                slotImages[i].GetComponent<Image>().sprite = slot_sp[i];
+                slotImages[i].GetComponentInChildren<RawImage>().texture = slotTex[i];
+                //slotImages[i].GetComponent<Image>().sprite = slot_sp[i];
             }
         }
         else

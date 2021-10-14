@@ -8,7 +8,7 @@ public class WallCtrl : MonoBehaviour
     // 하트 이미지 객체 받아오는 변수
     public GameObject[] hearts;
     // 바꿀 이미지 받아오는 변수
-    public Sprite empty_heart;
+    public Texture empty_heart;
     // 실수 가능한 횟수 받아오는 변수
     private int hp_count;
 
@@ -18,7 +18,7 @@ public class WallCtrl : MonoBehaviour
         hearts = GameCtrl.instance.hpImages;
     }
 
-    // CUBE나 ITEMBOX를 베었을 때 하트 이미지를 빈 이미지로 교체하는 함수
+    // CUBE나 ITEMBOX를 베지 못한 경우 하트 이미지를 빈 이미지로 교체하는 함수
     void OnCollisionEnter(Collision coll)
     {
         if (coll.collider.CompareTag("CUBE") || coll.collider.CompareTag("ITEMBOX"))
@@ -28,7 +28,8 @@ public class WallCtrl : MonoBehaviour
             if (hp_count > 0)
             {
                 GameCtrl.instance.heartCount -= 1;
-                hearts[hp_count - 1].GetComponentInChildren<GameObject>().SetActive(false);
+                hearts[hp_count - 1].GetComponent<RawImage>().texture = empty_heart;
+                //hearts[hp_count - 1].GetComponentInChildren<GameObject>().SetActive(false);
                 //hearts[hp_count - 1].GetComponent<Image>().sprite = empty_heart;     
             }
         }
