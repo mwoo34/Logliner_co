@@ -11,13 +11,15 @@ public class HeadCollider : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
-    void Update() {
+    void Update()
+    {
         rock_hearts = GameCtrl.instance.hpImages;
     }
     
+    // 카메라에 캡슐을 하나 붙여서 돌에 맞는지 확인하는 함수
     void OnCollisionEnter(Collision coll) {
         if (coll.collider.CompareTag("ROCKS")) {
             Destroy(coll.gameObject);

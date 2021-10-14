@@ -8,6 +8,7 @@ public class Chapter03 : MonoBehaviour
     public void Start()
     {
         Initialized();
+        PlayerPrefs.DeleteAll();
     }
 
     private void Initialized()
