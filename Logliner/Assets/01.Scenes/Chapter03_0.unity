@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &180924547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 443212272}
   - component: {fileID: 443212274}
   - component: {fileID: 443212273}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &673082293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 987787309}
   - component: {fileID: 987787311}
   - component: {fileID: 987787310}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1266,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987787307}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 987787309}
+        m_TargetAssemblyTypeName: LoadScene3_1, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987787307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1340,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 83.89, y: -30.44, z: 127.62}
+  m_Size: {x: 83.9, y: 32.8, z: 63.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &987787311
 MonoBehaviour:
@@ -2049,7 +2061,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756588168}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -44.22661, y: -32.14072, z: 116.37684}
+  m_LocalPosition: {x: -44.22661, y: -15.6, z: 116.37684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

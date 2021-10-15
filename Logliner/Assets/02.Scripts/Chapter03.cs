@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chapter03 : MonoBehaviour
 {
     public Material _skybox;
+    
     public void Start()
     {
         Initialized();
