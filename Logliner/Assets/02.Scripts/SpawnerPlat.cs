@@ -22,6 +22,7 @@ public class SpawnerPlat : MonoBehaviour
         {
             create = false;
             //GameCtrl.instance.IsGameOver = true;
+            StopCoroutine(MakePlat());
         }
     }
 
@@ -29,9 +30,9 @@ public class SpawnerPlat : MonoBehaviour
         if (create) {
             GameObject plat = Instantiate(plats, points);
             plat.transform.localPosition = Vector3.zero;
-            create = false;
+            //create = false;
             yield return new WaitForSeconds(20.0f);
-            create = true;
+            //create = true;
             StartCoroutine(MakePlat());
         }
     }

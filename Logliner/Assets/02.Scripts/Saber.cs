@@ -42,7 +42,7 @@ public class Saber : MonoBehaviour
                 Debug.Log("해당 pos 값 : " + pos);
                 if (pos < 3 && hit.collider.CompareTag("ITEMBOX")) 
                 {
-                    slot[pos].GetComponentInChildren<RawImage>().texture = slot_tex[pos];
+                    slot[pos].GetComponent<RawImage>().texture = slot_tex[pos];
                     //slot[pos].GetComponent<Image>().sprite = slot_sp[pos];
                     GameCtrl.instance.slotPos += 1;
                 }

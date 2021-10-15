@@ -22,6 +22,7 @@ public class GameCtrl : MonoBehaviour
 
     // 업무 재개 메시지 보관 변수
     public GameObject resumeMsg;
+    public GameObject noticeMsg;
     // 업무 재개 가능한 횟수 변수
     public int remainRound = 3;
     
@@ -109,22 +110,20 @@ public class GameCtrl : MonoBehaviour
         //IsGameOver = false;
         resumeMsg.SetActive(true);
         remainRound -= 1;
-        if (remainRound > 0)
-        {
-            for (int i = 3; i > remainRound; i--)
-            {
-                fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
-            }
-
-        }
         if (remainRound == 0)
         {
+            resumeMsg.SetActive(false);
+            //noticeMsg.SetActive(true);
+            StartCoroutine(NoticeMsg());
+        }
+        else if (remainRound > 0)
+        {
             for (int i = 3; i > remainRound; i--)
             {
                 fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
             }
-            
         }
+        
         // PlayerPrefs.SetInt("SlotPos", slotPos);
         // PlayerPrefs.SetInt("RemainRound", remainRound);
         // PlayerPrefs.Save();
@@ -136,5 +135,14 @@ public class GameCtrl : MonoBehaviour
         // }
         //ChangeScene();
         //changeHeart = true;
+    }
+
+    IEnumerator NoticeMsg()
+    {
+        //Debug.Log("notice 코루틴 호출");
+        noticeMsg.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        noticeMsg.SetActive(false);
+        SceneLoader.Instance.LoadNewScene("Chapter03_2");
     }
 }
