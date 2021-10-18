@@ -46,6 +46,8 @@ public class Saber : MonoBehaviour
                     //slot[pos].GetComponent<Image>().sprite = slot_sp[pos];
                     GameCtrl.instance.slotPos += 1;
                 }
+                if (GameCtrl.instance.slotPos == 3)
+                    GameCtrl.instance.GameSuccess = 2;
                 // 1초 정도 후에 lock을 false에서 true로 바꿔주는 함수
                 StartCoroutine(LockState());
             }

@@ -19,12 +19,19 @@ public class GameCtrl : MonoBehaviour
     public int slotPos = 0;
     // 양 쪽 컨트롤이 같은 객체를 벨 때 ITEMBOX가 2개 베지 않도록 잠그는 변수
     public bool _lock = true;
+    public GameObject spawnerCube;
 
     // 업무 재개 메시지 보관 변수
     public GameObject resumeMsg;
-    public GameObject noticeMsg;
+    public GameObject failMsg;
+    public GameObject sucMsg;
     // 업무 재개 가능한 횟수 변수
     public int remainRound = 3;
+    public GameObject timer;
+
+    // 게임 상태 여부 0은 진행중, 1은 실패, 2는 성공
+    public int GameSuccess = 0;
+    private bool _gameSuccess = true;
     
     // 업무 남은 횟수 이미지 바꾸지 변수
     public Sprite whiteSprite;
@@ -35,11 +42,9 @@ public class GameCtrl : MonoBehaviour
     //private bool isGameOver = false;
     //public bool changeHeart = false;
 
-    public int saveSlotPos;
-    public int saveRemainRound;
+    // public int saveSlotPos;
+    // public int saveRemainRound;
     private bool isSave;
-
-    public Button btn;
 
     public AudioSource audio;
 
@@ -102,6 +107,16 @@ public class GameCtrl : MonoBehaviour
             audio.Stop();
             ResumeGame();
         }
+        if (GameSuccess == 2 && _gameSuccess)
+        {
+            _gameSuccess = false;
+            spawnerCube.SetActive(false);
+            audio.Stop();
+            //GameSuccess = 0;
+            //timer.SetActive(false);
+            
+            StartCoroutine(SucMsg());
+        }
     }
 
     // 5개 목숨을 다 잃고 나타나는 메시지창과 몇번째 시도인지에 따라 메시지창에
@@ -114,7 +129,9 @@ public class GameCtrl : MonoBehaviour
         {
             resumeMsg.SetActive(false);
             //noticeMsg.SetActive(true);
-            StartCoroutine(NoticeMsg());
+            //GameObj.instance.checkGameSuccess = 0;
+            
+            StartCoroutine(FailMsg());
         }
         else if (remainRound > 0)
         {
@@ -137,12 +154,24 @@ public class GameCtrl : MonoBehaviour
         //changeHeart = true;
     }
 
-    IEnumerator NoticeMsg()
+    IEnumerator FailMsg()
     {
         //Debug.Log("notice 코루틴 호출");
-        noticeMsg.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        failMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
-        noticeMsg.SetActive(false);
-        SceneLoader.Instance.LoadNewScene("Chapter03_2");
+        //failMsg.SetActive(false);
+        SceneLoader.Instance.LoadNewScene("Chapter03_2_gamefail");
+        //GameObj.checkGameSuccess = GameSuccess;
+    }
+
+    IEnumerator SucMsg()
+    {
+        yield return new WaitForSeconds(2.0f);
+        sucMsg.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        //sucMsg.SetActive(false);
+        SceneLoader.Instance.LoadNewScene("Chapter03_3_gameclear");
+        //GameObj.checkGameSuccess = GameSuccess;
     }
 }

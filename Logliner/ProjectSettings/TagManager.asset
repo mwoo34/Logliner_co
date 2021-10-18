@@ -10,6 +10,8 @@ TagManager:
   - MISSION
   - ROCKS
   - ITEMBOX
+  - LANDFILL
+  - XRRIG
   layers:
   - Default
   - TransparentFX

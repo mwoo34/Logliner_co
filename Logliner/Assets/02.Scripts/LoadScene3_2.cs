@@ -5,6 +5,6 @@ using UnityEngine;
 public class LoadScene3_2 : MonoBehaviour
 {
     public void ChangeScene() {
-        SceneLoader.Instance.LoadNewScene("Chapter03_2");
+        SceneLoader.Instance.LoadNewScene("Chapter03_2_gamefail");
     }
 }

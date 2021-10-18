@@ -24,6 +24,11 @@ public class SpawnerPlat : MonoBehaviour
             //GameCtrl.instance.IsGameOver = true;
             StopCoroutine(MakePlat());
         }
+        if (GameCtrl.instance.GameSuccess == 2)
+        {
+            create = false;
+            StopCoroutine(MakePlat());
+        }
     }
 
     IEnumerator MakePlat() {
