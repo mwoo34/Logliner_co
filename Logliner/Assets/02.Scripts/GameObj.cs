@@ -48,7 +48,7 @@ public class GameObj : MonoBehaviour
         terrain[checkGameSuccess - 1].SetActive(true);
         target.SetActive(true);
         truck.SetActive(true);
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(2.0f);
         xrRig.GetComponent<MoveTruck>().enabled = true;
         
     }
