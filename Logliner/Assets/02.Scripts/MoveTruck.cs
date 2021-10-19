@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MoveTruck : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class MoveTruck : MonoBehaviour
     public GameObject landfill;
     public GameObject[] slot;
     private RectTransform slotRectTrans;
+    public Button[] btn;
 
     //public float stopDist = 10.0f;
     public float traceDist = 1.0f;
@@ -106,11 +108,11 @@ public class MoveTruck : MonoBehaviour
 
     IEnumerator NoticeMsg()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         noticeMsg1.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         noticeMsg1.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         //noticeMsg1.SetActive(false);
         //ChangeScene();
         if (GameObj.checkGameSuccess == 2)
@@ -122,17 +124,14 @@ public class MoveTruck : MonoBehaviour
     IEnumerator ZoomSlot()
     {
         //Vector3 playerPos = new Vector3(playerTr.transform.localPosition.x + 0.83f, playerTr.transform.localPosition.y, playerTr.transform.localPosition.z + 6.5f);
-        // Quaternion(0,-0.355803162,0,0.934561014)
-        // Vector3(0,318.314636,0)
-        // Vector3(0,0,0)
-        Quaternion qPlayerOri = transform.rotation;
-        Vector3 vPlayerOri = qPlayerOri.eulerAngles;
+        // Quaternion qPlayerOri = transform.rotation;
+        // Vector3 vPlayerOri = qPlayerOri.eulerAngles;
         
         for (int i = 0; i < 3; i++) 
         {
             yield return new WaitForSeconds(2.0f);
             slot[i].SetActive(false);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.5f);
             slot[i + 3].SetActive(true);
             // slot[i].transform.SetPositionAndRotation(new Vector3(
             // slot[i].transform.position.x - 16.0f,
@@ -155,9 +154,28 @@ public class MoveTruck : MonoBehaviour
             //Quaternion posY = Quaternion.LookRotation(transform.forward, )
             //slotRectTrans.localRotation.Set(0, 0, 0, 0);
         }
+        yield return new WaitForSeconds(1.0f);
+        GameObj.instance.uiMsg[2].SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        for (int i = 0; i < 3; i++)
+        {
+            slot[i].SetActive(false);
+        }
+        GameObj.instance.uiMsg[2].SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        GameObj.instance.uiMsg[3].SetActive(true);
+        btn[0].onClick.AddListener(AcceptBtn);
+        btn[1].onClick.AddListener(RejectBtn);
+    }
 
-        //Debug.Log("슬롯 위치 값 : " + slot[0].transform.position.x + " " + slot[0].transform.position.y + " " + slot[0].transform.position.z);
-        //Debug.Log("XR Rig 위치 값 : " + playerTr.transform.localPosition.x + " " + playerTr.transform.localPosition.y + " " + playerTr.transform.localPosition.z);
+    void AcceptBtn()
+    {
+        GameObj.checkGameSuccess = 2;
+    }
+    
+    void RejectBtn()
+    {
+        GameObj.checkGameSuccess = 1;
     }
 
     void ChangeScene() {
@@ -167,11 +185,11 @@ public class MoveTruck : MonoBehaviour
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         if (GameObj.checkGameSuccess == 1)
         {
-            SceneLoader.Instance.LoadNewScene("Chapter04_0");
+            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         }
         else if (GameObj.checkGameSuccess == 2)
         {
-            SceneLoader.Instance.LoadNewScene("Chapter04_0");
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_success");
         }
     }
 }

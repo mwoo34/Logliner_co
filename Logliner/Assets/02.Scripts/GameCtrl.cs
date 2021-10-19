@@ -161,7 +161,7 @@ public class GameCtrl : MonoBehaviour
         failMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         //failMsg.SetActive(false);
-        SceneLoader.Instance.LoadNewScene("Chapter03_2_gamefail");
+        SceneLoader.Instance.LoadNewScene("Chapter03_2_gameFail");
         //GameObj.checkGameSuccess = GameSuccess;
     }
 
@@ -171,7 +171,7 @@ public class GameCtrl : MonoBehaviour
         sucMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         //sucMsg.SetActive(false);
-        SceneLoader.Instance.LoadNewScene("Chapter03_3_gameclear");
+        SceneLoader.Instance.LoadNewScene("Chapter03_3_gameWin");
         //GameObj.checkGameSuccess = GameSuccess;
     }
 }
