@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12471368, g: 0.11226565, b: 0.19680357, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1400,7 +1400,6 @@ GameObject:
   - component: {fileID: 296441863}
   - component: {fileID: 296441858}
   - component: {fileID: 296441857}
-  - component: {fileID: 296441862}
   - component: {fileID: 296441861}
   - component: {fileID: 296441860}
   - component: {fileID: 296441859}
@@ -1454,7 +1453,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 296441858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392721213}
+        m_TargetAssemblyTypeName: MoveTruck, Assembly-CSharp
+        m_MethodName: RejectBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &296441858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,9 +1571,9 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DataSave, Assembly-CSharp
-        m_MethodName: Save
+      - m_Target: {fileID: 392721213}
+        m_TargetAssemblyTypeName: MoveTruck, Assembly-CSharp
+        m_MethodName: RejectBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1608,18 +1619,6 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &296441862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296441856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567cddcf576a46f4bb6e2ebb49314bb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &296441863
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2628,7 +2627,6 @@ MonoBehaviour:
   playerTr: {fileID: 392721207}
   landTr: {fileID: 1179541943}
   agent: {fileID: 392721214}
-  lookUpDist: 45
   leftController: {fileID: 1469136289}
   rightController: {fileID: 1610129096}
   noticeMsg1: {fileID: 1766462736}
@@ -2641,11 +2639,9 @@ MonoBehaviour:
   - {fileID: 583633071}
   - {fileID: 1579299665}
   - {fileID: 1813040759}
-  btn:
+  successBtn:
   - {fileID: 1962090616}
   - {fileID: 296441857}
-  traceDist: 1
-  msgDist: 2
 --- !u!195 &392721214
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2891,12 +2887,10 @@ MonoBehaviour:
   - {fileID: 1172299939}
   - {fileID: 162472097}
   - {fileID: 746375803}
-  terrain:
-  - {fileID: 1156049353}
-  - {fileID: 1156049353}
   truck: {fileID: 1954918842}
-  target: {fileID: 1179541939}
+  landfill: {fileID: 1179541939}
   xrRig: {fileID: 392721206}
+  terrain: {fileID: 1156049353}
 --- !u!1 &466714773
 GameObject:
   m_ObjectHideFlags: 0
@@ -3266,8 +3260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c79ee4bb898a084aa52a41d23cf5427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock_hearts:
-  - {fileID: 0}
+  hearts: []
   empty_heart: {fileID: 2800000, guid: f6254c55d1a90c449ac79816f7f7943c, type: 3}
 --- !u!54 &611447219
 Rigidbody:
@@ -7446,8 +7439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c79ee4bb898a084aa52a41d23cf5427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock_hearts:
-  - {fileID: 0}
+  hearts: []
   empty_heart: {fileID: 2800000, guid: f6254c55d1a90c449ac79816f7f7943c, type: 3}
 --- !u!1 &1610129096 stripped
 GameObject:
@@ -9092,7 +9084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1954918843
 Transform:
   m_ObjectHideFlags: 0
@@ -9408,9 +9400,9 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962090609}
-        m_TargetAssemblyTypeName: DataSave, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 392721213}
+        m_TargetAssemblyTypeName: MoveTruck, Assembly-CSharp
+        m_MethodName: AcceptBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9538,13 +9530,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962090609}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 392721213}
+        m_TargetAssemblyTypeName: MoveTruck, Assembly-CSharp
+        m_MethodName: AcceptBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

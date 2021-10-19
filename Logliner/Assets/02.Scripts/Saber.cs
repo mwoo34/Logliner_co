@@ -5,50 +5,48 @@ using UnityEngine.UI;
 
 public class Saber : MonoBehaviour
 {
+    // 정화세이버 중에 SettingXR 씬의 양쪽 컨트롤러에 달 스크립트로, 같은 layer로 해놨을 때 동시에 베었을 때, 슬롯이 2개가 변경되는 이슈가 있었음
+
     // 컨트롤러로 해당 layer만 베기
     public LayerMask layer;
     private Vector3 previousPos;
     public AudioSource au;
     // Slot객체 받아오는 변수
     public GameObject[] slot;
+
     // 바꿀 이미지 받아오는 변수
-    //public Sprite[] slot_sp;
     public Texture[] slot_tex;
     
     void Start()
     {
         au = gameObject.GetComponent<AudioSource>();
-        //slot_tex = GameCtrl.instance.slotTex;
     }
 
     void Update()
     {
+        // 게임매니저에서 settingXR로 슬롯이미지 객체를 가져옴
         slot = GameCtrl.instance.slotImages;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1, layer))
-        {
-            // if (Vector3.Angle(transform.position- previousPos, hit.transform.up) > 130) {
-            //     Destroy(hit.transform.gameObject);
-            // }
-            
+        {   
             // hit한 순간에 사운드 효과
             au.Play();
-            // lock이 true일 때만 진입하고 바로 false로 바꿔서 잠금
+            // lock이 true일 때만 진입하고 바로 false로 바꿔서 잠금, 동시에 벨 때 슬롯 두개가 변경되는 것을 방지
             if (GameCtrl.instance._lock)
             {   
                 GameCtrl.instance._lock = false;
                 // slot의 위치를 가져와서 해당 위치 이미지 교체하는 기능
                 int pos = GameCtrl.instance.slotPos;
-                Debug.Log("해당 pos 값 : " + pos);
-                if (pos < 3 && hit.collider.CompareTag("ITEMBOX")) 
-                {
+                // 총 3개의 슬롯을 벗어나지 않고 벤 객체 태그가 ITEMBOX인 경우
+                if (pos < 3 && hit.collider.CompareTag("ITEMBOX"))
+                {   // 해당 슬롯 위치에 이미지를 바꿔 줌
                     slot[pos].GetComponent<RawImage>().texture = slot_tex[pos];
-                    //slot[pos].GetComponent<Image>().sprite = slot_sp[pos];
                     GameCtrl.instance.slotPos += 1;
                 }
+                // 아이템 박스 3개를 다 베어서 슬롯 3개를 교체했다면 성공을 알려주기 위해 2를 대입
                 if (GameCtrl.instance.slotPos == 3)
                     GameCtrl.instance.GameSuccess = 2;
-                // 1초 정도 후에 lock을 false에서 true로 바꿔주는 함수
+                // 0.5초 정도 후에 lock을 false에서 true로 바꿔주는 코루틴
                 StartCoroutine(LockState());
             }
             Destroy(hit.transform.gameObject);
@@ -56,9 +54,10 @@ public class Saber : MonoBehaviour
         previousPos = transform.position;
     }
 
+    // lock을 false에서 true로 바꿔주는 코루틴
     IEnumerator LockState()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         GameCtrl.instance._lock = true;
     }
 }

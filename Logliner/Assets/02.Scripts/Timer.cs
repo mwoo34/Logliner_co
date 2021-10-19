@@ -5,6 +5,8 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    // 3_1 정화세이버에서 시간을 보여주기 위해 사용하는 스크립트
+
     private float startTime;
     private string textTime;
     private float guiTime;
@@ -15,20 +17,24 @@ public class Timer : MonoBehaviour
 
     public TMP_Text textField;
     
+    // 시간은 70초로 초기 설정과 진행중인 상태를 true로 넣음
     void Start()
     {
         startTime = Time.time + 70;
         progressGame = true;
     }
 
+    // 진행중일동안 시간 보여주는 함수 실행
     void Update()
     {
         if (progressGame)
             ShowTime();
     }
 
+    // 시간을 계산해서 보여주는 함수
     void ShowTime()
     {
+        // 하트가 없으면 비활성화 시킴
         if (GameCtrl.instance.heartCount == 0)
             gameObject.SetActive(false);
         guiTime =  startTime - Time.time;
@@ -36,6 +42,7 @@ public class Timer : MonoBehaviour
         seconds = (int)guiTime % 60;
         fraction = (int)(guiTime * 100) % 100;
         textTime = string.Format("{0:00}:{1:00}", minutes, seconds, fraction);
+        // 제한 시간동안 살아있거나 아이템 슬롯을 채워서 성공한 경우 진입하는 부분
         if (minutes == 0 && seconds == 0 || GameCtrl.instance.GameSuccess == 2) 
         {
             textField.text = "Game Clear";
@@ -44,7 +51,7 @@ public class Timer : MonoBehaviour
             progressGame = false;
             //GameObj.instance.checkGame = 1;
         }
-        else 
+        else
         {
             textField.text = textTime;
         }

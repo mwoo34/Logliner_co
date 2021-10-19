@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DataSave : MonoBehaviour
 {
-    // 업무 재개 버튼을 누를경우 현재 오픈된 슬롯과 남은 라운드 수를 저장
+    // 업무 재개 버튼을 누를경우 현재 오픈된 슬롯 갯수와 남은 라운드 수를 저장
     public void Save()
     {
         int slotPos = GameCtrl.instance.slotPos;
@@ -22,7 +22,7 @@ public class DataSave : MonoBehaviour
     public void ChangeScene()
     {
         //GameCtrl.instance.IsGameOver = false;
-        SceneLoader.Instance.LoadNewScene("Chapter03_1");
+        SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
         //Load();
     }
 }

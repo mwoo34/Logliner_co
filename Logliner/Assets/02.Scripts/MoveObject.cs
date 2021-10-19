@@ -7,14 +7,12 @@ public class MoveObject : MonoBehaviour
     // 생성된 큐브 및 땅 움직임
     void Update()
     {
+        // GameSuccess가 0은 게임이 진행중으로 객체가 계속해서 이동함
         if (GameCtrl.instance.GameSuccess == 0) {
-            Debug.Log("GameSuccess 값 : " + GameCtrl.instance.GameSuccess);
             transform.position += Time.deltaTime * transform.forward * 3;
         }
-        else {
+        else { // 게임이 진행중이 아니라면 멈춤
             transform.position += Time.deltaTime * transform.forward * 0;
-            //this.gameObject.SetActive(false);
-            
         }
     }
 }

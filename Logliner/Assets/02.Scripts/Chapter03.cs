@@ -12,6 +12,7 @@ public class Chapter03 : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    // 3씬 스카이박스 초기화
     private void Initialized()
     {
         //skybox setting
