@@ -30,7 +30,7 @@ public class GameObj : MonoBehaviour
     public GameObject landfill;
 
     // XR Rig 카메라 담는 변수
-    public GameObject xrRig;
+    //public GameObject xrRig;
 
     // 자동 이동할 때 사용할 지형 터레인 담는 변수
     //public GameObject[] terrain;
@@ -58,7 +58,8 @@ public class GameObj : MonoBehaviour
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
         {
             truck.SetActive(false);
-            xrRig.GetComponent<MoveTruck>().enabled = false;
+            GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
+            //xrRig.GetComponent<MoveTruck>().enabled = false;
         }
         if (objManage == 1)
         {
@@ -78,6 +79,6 @@ public class GameObj : MonoBehaviour
         terrain.SetActive(true);
         landfill.SetActive(true);
         truck.SetActive(true);
-        xrRig.GetComponent<MoveTruck>().enabled = true;
+        GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
     }
 }

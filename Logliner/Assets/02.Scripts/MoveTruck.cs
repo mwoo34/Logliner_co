@@ -215,7 +215,7 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 2)
         {
             GameObj.checkGameSuccess = 4;
-            SceneLoader.Instance.LoadNewScene("Chapter04_1_success");
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
         }
     }
 }
