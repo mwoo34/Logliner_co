@@ -142,15 +142,12 @@ public class MoveTruck : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         noticeMsg1.SetActive(false);
         yield return new WaitForSeconds(2.0f);
-
-        Debug.Log("checkGameSuccess값 : " + GameObj.checkGameSuccess);
-
         // 2 성공의 경우 사용자에게 슬롯 확대와 메시지창을 보여주기 위한 함수
         if (GameObj.checkGameSuccess == 2)
             StartCoroutine(ZoomSlot());
         else if (GameObj.checkGameSuccess == 1) // 1 실패의 경우 챕터4 실패 씬으로 이동
         {
-            ChangeScene();
+            StartCoroutine(ChangeScene());
         }
     }
 
@@ -175,6 +172,11 @@ public class MoveTruck : MonoBehaviour
         }
         GameObj.instance.uiMsg[2].SetActive(false);
         yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < 3; i++) 
+        {
+            slot[i + 3].SetActive(false);
+        }
+        yield return new WaitForSeconds(1.0f);
         // 다시 업무를 이어서 할지 수락과 거절로 묻는 기능
         GameObj.instance.uiMsg[3].SetActive(true);
         successBtn[0].onClick.AddListener(AcceptBtn); // 수락 버튼
@@ -184,41 +186,36 @@ public class MoveTruck : MonoBehaviour
     // 수락 버튼을 선택하면 성공 2를 주고 챕터4 성공 씬으로 이동
     public void AcceptBtn()
     {
-        //GameObj.checkGameSuccess = 2;
-        ChangeScene();
+        GameObj.checkGameSuccess = 2;
+        StartCoroutine(ChangeScene());
     }
     
     // 거절 버튼을 선택하면 실패 1을 주고 챕터4 실패 씬으로 이동
     public void RejectBtn()
     {
-        //GameObj.checkGameSuccess = 1;
-        ChangeScene();
+        GameObj.checkGameSuccess = 1;
+        StartCoroutine(ChangeScene());
     }
 
     // 활성화 된 객체를 끄고 사용자를 원래 위치로 놓고 변수 값에 따라 성공, 실패 씬으로 이동
-    void ChangeScene() {
+    IEnumerator ChangeScene() {
         terrain.SetActive(false);
         landfill.SetActive(false);
         playerTr.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        this.gameObject.GetComponent<AudioSource>().enabled = false;
+        GameObj.instance.uiMsg[3].SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        // 게임매니저에 알리기위해 기존과 다른 실패3과 성공4를 넣어서 보내고 챕터 이동
         if (GameObj.checkGameSuccess == 1)
         {
-            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
             GameObj.checkGameSuccess = 3;
+            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         }
         if (GameObj.checkGameSuccess == 2)
         {
-            SceneLoader.Instance.LoadNewScene("Chapter04_1_success");
             GameObj.checkGameSuccess = 4;
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_success");
         }
-
-        // if (GameObj.checkGameSuccess == 1)
-        // {
-        //     SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
-        // }
-        // else if (GameObj.checkGameSuccess == 2)
-        // {
-        //     SceneLoader.Instance.LoadNewScene("Chapter04_1_success");
-        // }
     }
 }

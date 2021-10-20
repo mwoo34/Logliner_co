@@ -10,6 +10,9 @@ public class GameObj : MonoBehaviour
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
     public static int checkGameSuccess;
+    public static int objManage;
+    public GameObject collManage;
+    public static int ch4FailorSucces = 1;
 
     // Update에서 호출 제한을 두기 위한 변수
     private bool autoMove = true;
@@ -54,26 +57,27 @@ public class GameObj : MonoBehaviour
         }
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
         {
+            truck.SetActive(false);
             xrRig.GetComponent<MoveTruck>().enabled = false;
+        }
+        if (objManage == 1)
+        {
+            collManage.SetActive(true);
+        }
+        else
+        {
+            collManage.SetActive(false);
         }
     }
 
     // 트럭이 움직이기 전에 세팅을 위한 함수
     IEnumerator AutoMove()
     {
-        // 성공상태 이동일 경우 슬롯 표시를 위한 기능
-        // if (checkGameSuccess == 2)
-        // {
-        //     for (int i = 0; i < 3; i++)
-        //     {
-        //         slot[i].SetActive(true);
-        //     }
-        // }
         // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
         terrain.SetActive(true);
         landfill.SetActive(true);
         truck.SetActive(true);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(6.0f);
         xrRig.GetComponent<MoveTruck>().enabled = true;
     }
 }

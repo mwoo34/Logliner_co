@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter04_0_fail.unity
     guid: 0af0e84cf98005c47bceefadaf5fd178
   - enabled: 1
-    path: Assets/01.Scenes/Chapter04_0_success.unity
+    path: Assets/01.Scenes/Chapter04_1_success.unity
     guid: f3306e3498cbcd346bb8c0b27027c25c
   - enabled: 0
     path: Assets/01.Scenes/Chapter03.unity

@@ -58,7 +58,7 @@ public class GameCtrl : MonoBehaviour
     private bool isSave;
 
     // 오디오 받을 변수
-    public AudioSource audio;
+    private AudioSource audio;
 
     // GameCtrl 인스턴스화를 위해 선언
     public static GameCtrl instance;
@@ -95,6 +95,7 @@ public class GameCtrl : MonoBehaviour
         // 불러왔기 때문에 저장된 데이터 전체 삭제함
         PlayerPrefs.DeleteAll();
         audio = gameObject.GetComponent<AudioSource>();
+        GameObj.objManage = 1;
     }
 
     // 게임 실패 후 업무재개 화면
@@ -140,6 +141,7 @@ public class GameCtrl : MonoBehaviour
     // 실패 메시지를 보여준 후 게임 실패 씬으로 이동
     IEnumerator FailMsg()
     {
+        GameObj.objManage = 0;
         yield return new WaitForSeconds(2.0f);
         failMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
@@ -150,6 +152,7 @@ public class GameCtrl : MonoBehaviour
     // 게임 성공 메시지를 보여준 후 게임 성공 씬으로 이동
     IEnumerator SucMsg()
     {
+        GameObj.objManage = 0;
         yield return new WaitForSeconds(2.0f);
         sucMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
