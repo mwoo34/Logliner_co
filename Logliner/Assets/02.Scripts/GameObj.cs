@@ -74,10 +74,10 @@ public class GameObj : MonoBehaviour
     IEnumerator AutoMove()
     {
         // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
+        yield return new WaitForSeconds(6.0f);
         terrain.SetActive(true);
         landfill.SetActive(true);
         truck.SetActive(true);
-        yield return new WaitForSeconds(6.0f);
         xrRig.GetComponent<MoveTruck>().enabled = true;
     }
 }

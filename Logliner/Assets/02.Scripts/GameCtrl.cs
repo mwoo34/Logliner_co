@@ -33,7 +33,7 @@ public class GameCtrl : MonoBehaviour
     public int remainRound = 3;
 
     // 시간 표시할 객체
-    //public GameObject timer;
+    public GameObject timer;
 
     // 게임 상태 여부 0은 진행중, 1은 실패, 2는 성공
     public int GameSuccess = 0;
@@ -114,6 +114,7 @@ public class GameCtrl : MonoBehaviour
             _gameSuccess = false;
             spawnerCube.SetActive(false);
             audio.Stop();
+            timer.SetActive(false);
             StartCoroutine(SucMsg());
         }
     }
@@ -127,6 +128,7 @@ public class GameCtrl : MonoBehaviour
         if (remainRound == 0)
         {
             resumeMsg.SetActive(false);
+            timer.SetActive(false);
             StartCoroutine(FailMsg());
         } // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
         else if (remainRound > 0)
