@@ -24,6 +24,9 @@ public class GameCtrl : MonoBehaviour
     // 장애물 스폰하는 객체
     public GameObject spawnerCube;
 
+    // 지형 받을 변수
+    public GameObject plat;
+
     // 업무 재개 메시지 보관 변수
     public GameObject resumeMsg;
     public GameObject failMsg;

@@ -44,8 +44,8 @@ public class Saber : MonoBehaviour
                     GameCtrl.instance.slotPos += 1;
                 }
                 // 아이템 박스 3개를 다 베어서 슬롯 3개를 교체했다면 성공을 알려주기 위해 2를 대입
-                if (GameCtrl.instance.slotPos == 3)
-                    GameCtrl.instance.GameSuccess = 2;
+                // if (GameCtrl.instance.slotPos == 3)
+                //     GameCtrl.instance.GameSuccess = 2;
                 // 0.5초 정도 후에 lock을 false에서 true로 바꿔주는 코루틴
                 StartCoroutine(LockState());
             }

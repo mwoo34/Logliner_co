@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     // 시간은 70초로 초기 설정과 진행중인 상태를 true로 넣음
     void Start()
     {
-        startTime = Time.time + 70;
+        startTime = Time.time + 30;
         progressGame = true;
     }
 

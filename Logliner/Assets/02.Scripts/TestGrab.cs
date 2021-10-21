@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class TestGrab : MonoBehaviour
@@ -9,24 +10,30 @@ public class TestGrab : MonoBehaviour
     public GameObject _tablet;
     public GameObject _box;
     public GameObject _docx;
+
+    public SpriteRenderer _canvas;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
     bool isGrab = false;
     // Update is called once per frame
     void Update()
     {
-        if (isGrab)
-        {
-            _tablet.GetComponent<Transform>().localPosition = GameManager.Instance._Left.GetComponent<Transform>().localPosition;
-            _tablet.GetComponent<Transform>().localRotation = GameManager.Instance._Left.GetComponent<Transform>().localRotation;
+        //if (isGrab)
+        //{
+        //    _tablet.GetComponent<Transform>().localPosition = GameManager.Instance._Left.GetComponent<Transform>().localPosition;
+        //    _tablet.GetComponent<Transform>().localRotation = GameManager.Instance._Left.GetComponent<Transform>().localRotation;
 
-            //_obj.GetComponent<Transform>().localRotation = Quaternion.Euler(new Vector3(GameManager.Instance._Left.GetComponent<Transform>().localRotation.x, GameManager.Instance._Left.GetComponent<Transform>().localRotation.y, GameManager.Instance._Left.GetComponent<Transform>().localRotation.z - 85f));
-        }
+        //    //_obj.GetComponent<Transform>().localRotation = Quaternion.Euler(new Vector3(GameManager.Instance._Left.GetComponent<Transform>().localRotation.x, GameManager.Instance._Left.GetComponent<Transform>().localRotation.y, GameManager.Instance._Left.GetComponent<Transform>().localRotation.z - 85f));
+        //}
     }
 
+    public void OnSelect()
+    {
+        _canvas.color = new Color(0, 0, 0, 255);
+    }
     public void OnDrop()
     {
         isGrab = false;

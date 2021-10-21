@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Chapter01.unity
     guid: f2ee4aa5ab769874f8ec12e5da2f8557
-  - enabled: 1
-    path: Assets/01.Scenes/Chapter02.unity
-    guid: 06c3d3185f8df4943ba5f56ee0ae98a4
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/01.Scenes/Chapter03_0.unity
     guid: 52a3051672c674a4da37653d5e96ad38
@@ -42,14 +42,14 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter04_3_credit.unity
     guid: 96d9e5dd4fdc24348b00400c59662778
   - enabled: 0
-    path: Assets/01.Scenes/Chapter03.unity
-    guid: 81a10ecfbabf80c4fa6d3e030bc88115
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/01.Scenes/Chapter04.unity
-    guid: b487d1f0d26c6e446867afae488274e6
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/01.Scenes/SettingXR-2.unity
-    guid: 07835a0f3fb1de44eb80bd8a852febf6
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 05d77055a3906c4468c7c745554428b3, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8ca668a9cbfb8d94782ac337b7c48d5e, type: 2}

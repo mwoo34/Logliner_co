@@ -15,7 +15,8 @@ public class SpawnerPlat : MonoBehaviour
     // 땅 만드는 코루틴 호출
     void Start()
     {
-        StartCoroutine(MakePlat());
+        //StartCoroutine(MakePlat());
+        MakePlat2();
     }
 
     // 하트를 다 잃거나 게임 클리어스 땅 만드는 코루틴 멈춤
@@ -23,15 +24,22 @@ public class SpawnerPlat : MonoBehaviour
     {
         if (GameCtrl.instance.heartCount == 0) 
         {
-            create = false;
+            
+            //create = false;
             //GameCtrl.instance.IsGameOver = true;
-            StopCoroutine(MakePlat());
+            //StopCoroutine(MakePlat());
         }
         if (GameCtrl.instance.GameSuccess == 2)
         {
-            create = false;
-            StopCoroutine(MakePlat());
+            //create = false;
+            //StopCoroutine(MakePlat());
         }
+    }
+
+    void MakePlat2()
+    {
+        GameObject plat = Instantiate(plats, points);
+        plat.transform.localPosition = Vector3.zero;
     }
 
     // 땅을 해당 위치에 일정 시간마다 생성하는 함수
@@ -42,7 +50,7 @@ public class SpawnerPlat : MonoBehaviour
             //create = false;
             yield return new WaitForSeconds(20.0f);
             //create = true;
-            StartCoroutine(MakePlat());
+            //StartCoroutine(MakePlat());
         }
     }
 }
