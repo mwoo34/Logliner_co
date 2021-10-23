@@ -11,7 +11,7 @@ public class ItemMemoryTablet : MonoBehaviour
     public event FloatingEventHandler HideUI;
     public event FloatingEventHandler MemoryPlayComplete;
 
-    //ï¿½è³¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½
+    //¹è³¶¼Ó ¸®ÁøÅ¸ºí·¿
     public GameObject _MemoryTablet;
     private Vector3 _tabletposition;
     private Quaternion _tabletrotation;
@@ -33,7 +33,7 @@ public class ItemMemoryTablet : MonoBehaviour
 
     public void Start()
     {
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ìºï¿½Æ®
+        //ºñµð¿À Àç»ý¿Ï·á ÀÌº¥Æ®
         _memoryPlayer.Events.AddListener(OnVideoEvent);
 
         _tabletposition = _MemoryTablet.GetComponent<Transform>().localPosition;
@@ -41,7 +41,7 @@ public class ItemMemoryTablet : MonoBehaviour
     }
     public void ShowTablet()
     {
-        //ï¿½è³¶ ï¿½ï¿½ï¿½ï¿½
+        //¹è³¶ ¼±ÅÃ
         _MemoryTablet.SetActive(true);
     }
     public void OnVideoEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode errorCode)
@@ -56,13 +56,13 @@ public class ItemMemoryTablet : MonoBehaviour
                 break;
             case MediaPlayerEvent.EventType.FinishedPlaying:
                 //Debug.Log("FinishedPlaying");
-                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
+                //ºñµð¿À Àç»ý ¿Ï·á
                 _deActivate = true;
                 memoryTablet.enabled = false;
-                //ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+                //¿ø·¡ ÀÚ¸®·Î µ¹¾Æ°¨
                 _MemoryTablet.GetComponent<Transform>().localPosition = _tabletposition;
                 _MemoryTablet.GetComponent<Transform>().localRotation = _tabletrotation;
-                //ï¿½Ì¼ï¿½
+                //¹Ì¼Ç
                 onMemoryPlayComplete();
                 break;
         }
@@ -90,7 +90,7 @@ public class ItemMemoryTablet : MonoBehaviour
     }
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½
+    /// Àâ±â
     /// </summary>
     public void OnGrab()
     {
@@ -101,7 +101,7 @@ public class ItemMemoryTablet : MonoBehaviour
         _colTablet.isTrigger = true;
         _colBackpack.isTrigger = true;
 
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­
+        //Á¦¼Ä ¹öÆ° È°¼ºÈ­
         btnPlay.gameObject.SetActive(true);
 
         _sound.Stop();
@@ -110,7 +110,7 @@ public class ItemMemoryTablet : MonoBehaviour
 
     }
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½ß¸ï¿½
+    /// ¶³¾î¶ß¸²
     /// </summary>
     public void OnDrop()
     {
@@ -129,13 +129,13 @@ public class ItemMemoryTablet : MonoBehaviour
             _colTablet.isTrigger = false;
             _colBackpack.isTrigger = false;
 
-            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+            //¿ø·¡ ÀÚ¸®·Î µ¹¾Æ°¨
             _MemoryTablet.GetComponent<Transform>().localPosition = _tabletposition;
             _MemoryTablet.GetComponent<Transform>().localRotation = _tabletrotation;
         }
     }
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ¿µ»óÀç»ý
     /// </summary>
     public void OnSelectPlay()
     {
