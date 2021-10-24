@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class GameObj : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameObj : MonoBehaviour
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = -1;
+    public static int checkGameSuccess = 3;
     public static int objManage;
     public GameObject collManage;
     public static int ch4FailorSucces = 1;
@@ -67,6 +68,8 @@ public class GameObj : MonoBehaviour
         {
             truck.SetActive(false);
             GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
+            GameManager.Instance._XRrig.GetComponent<NavMeshAgent>().enabled = false;
+            GameManager.Instance._XRrig.GetComponent<AudioSource>().enabled = false;
             //xrRig.GetComponent<MoveTruck>().enabled = false;
         }
         if (objManage == 1)
@@ -83,8 +86,8 @@ public class GameObj : MonoBehaviour
     IEnumerator AutoMove()
     {
         // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
-        yield return new WaitForSeconds(6.0f);
-        terrain.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        //terrain.SetActive(true);
         landfill.SetActive(true);
         truck.SetActive(true);
         GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;

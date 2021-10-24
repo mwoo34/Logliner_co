@@ -8,7 +8,7 @@ public class MoveObject : MonoBehaviour
     void Update()
     {
         // GameSuccess가 0은 게임이 진행중으로 객체가 계속해서 이동함
-        if (GameCtrl.instance.GameSuccess == 0) {
+        if (GameCtrl.instance.heartCount > 0) {
             this.gameObject.transform.position += Time.deltaTime * transform.forward * 3;
         }
         else { // 게임이 진행중이 아니라면 멈춤

@@ -55,15 +55,15 @@ public class MoveTruck : MonoBehaviour
         agent.updateRotation = false;
         this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         // 주인공 시작위치 변경하고 정화세이버에 사용한 컨트롤러 꺼줌
-        playerTr.transform.SetPositionAndRotation(new Vector3(16.0f, 2.0f, 7.0f), Quaternion.Euler(0f, 45.0f, 0f));
+        //playerTr.transform.SetPositionAndRotation(new Vector3(16.0f, 2.0f, 7.0f), Quaternion.Euler(0f, 45.0f, 0f));
         leftController.SetActive(false);
         rightController.SetActive(false);
         // 1실패 2성공의 값을 pos에 담고 그에 맞는 메시지창을 닫음
         int pos = GameObj.checkGameSuccess;
         noticeMsg1 = GameObj.instance.uiMsg[pos - 1];
         // 지형과 매립지를 활성화 시키고 오디오를 실행
-        terrain.SetActive(true);
-        landfill.SetActive(true);
+        //terrain.SetActive(true);
+        //landfill.SetActive(true);
         this.gameObject.GetComponent<AudioSource>().enabled = true;
         // 게임 성공시에만 생물 슬롯을 보여주기 위한 기능
         if (pos == 2)
@@ -105,7 +105,7 @@ public class MoveTruck : MonoBehaviour
     void CheckPlayerState()
     {
         float distance = Vector3.Distance(landTr.position, playerTr.position);
-        if (distance <= 2.0f)
+        if (distance <= 3.0f)
         {
             state = State.IDLE;
         }
