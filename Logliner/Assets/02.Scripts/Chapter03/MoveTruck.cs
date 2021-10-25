@@ -74,7 +74,8 @@ public class MoveTruck : MonoBehaviour
             }
         }
         // 자동 이동 시작하는 코루틴
-        StartCoroutine(PlayerBehaviour());
+        if (GameObj.checkGameSuccess == 1 || GameObj.checkGameSuccess == 2)
+            StartCoroutine(PlayerBehaviour());
     }
 
     // 도착지를 계속 탐색해서 찾아가는 함수
