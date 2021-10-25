@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter02.unity
     guid: ad1187c9ac9559e4f90b8c38cf226df6
   - enabled: 1
-    path: Assets/01.Scenes/Chapter02_1.unity
+    path: Assets/01.Scenes/Chapter02_1_ori.unity
     guid: 6e5174c8bd519be4e83090d7cf061b96
   - enabled: 1
     path: Assets/01.Scenes/Chapter03_0_ori.unity
@@ -33,10 +33,10 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter03_3_gameWin.unity
     guid: c4353dde8e2c1cf48b784ab5322ac826
   - enabled: 1
-    path: Assets/01.Scenes/Chapter04_0_fail.unity
+    path: Assets/01.Scenes/Chapter04_0_fail_ori.unity
     guid: 0af0e84cf98005c47bceefadaf5fd178
   - enabled: 1
-    path: Assets/01.Scenes/Chapter04_1_blackUniverse.unity
+    path: Assets/01.Scenes/Chapter04_1_blackUniverse_ori.unity
     guid: f3306e3498cbcd346bb8c0b27027c25c
   - enabled: 1
     path: Assets/01.Scenes/Chapter04_2_base.unity

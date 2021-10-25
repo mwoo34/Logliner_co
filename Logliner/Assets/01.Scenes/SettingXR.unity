@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28462127, g: 0.37120965, b: 0.49880528, a: 1}
+  m_IndirectSpecularColor: {r: 0.2840928, g: 0.3706988, b: 0.5003959, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1547,7 +1547,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392721206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1967,7 +1967,13 @@ MonoBehaviour:
   - {fileID: 746375803}
   truck: {fileID: 1173927889}
   landfill: {fileID: 1179541939}
-  terrain: {fileID: 0}
+  terrain1: {fileID: 461725372}
+  terrain2: {fileID: 1269098111}
+--- !u!1 &461725372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9059520338839646476, guid: 3e6713d2482939646a536f082c8fa666, type: 3}
+  m_PrefabInstance: {fileID: 388869029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &466714773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4982,6 +4988,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194241904}
   m_CullTransparentMesh: 1
+--- !u!1 &1269098111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3157765952070242465, guid: 1d1def5dae09fc24da496d68dde705b1, type: 3}
+  m_PrefabInstance: {fileID: 588879602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1429465520
 GameObject:
   m_ObjectHideFlags: 0

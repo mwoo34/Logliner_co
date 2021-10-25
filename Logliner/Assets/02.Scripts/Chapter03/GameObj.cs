@@ -38,7 +38,8 @@ public class GameObj : MonoBehaviour
 
     // 자동 이동할 때 사용할 지형 터레인 담는 변수
     //public GameObject[] terrain;
-    public GameObject terrain;
+    public GameObject terrain1;
+    public GameObject terrain2;
 
     // 싱글톤을 위해 선언
     void Awake()
