@@ -10,7 +10,7 @@ public class Saber : MonoBehaviour
     // 컨트롤러로 해당 layer만 베기
     public LayerMask layer;
     private Vector3 previousPos;
-    public AudioSource au;
+    private AudioSource au;
     // Slot객체 받아오는 변수
     public GameObject[] slot;
 

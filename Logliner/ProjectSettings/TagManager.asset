@@ -13,6 +13,7 @@ TagManager:
   - LANDFILL
   - XRRIG
   - COLLIDER
+  - LODDING_BAR
   layers:
   - Default
   - TransparentFX

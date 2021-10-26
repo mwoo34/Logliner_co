@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameCtrl : MonoBehaviour
 {
+    // 씬 Chapter03_1_game 게임매니저
+    
     // 실수 가능한 횟수 담은 변수
     public int heartCount = 5;
     // 하트 객체 담을 변수
@@ -15,7 +17,7 @@ public class GameCtrl : MonoBehaviour
 
     // 슬롯에 넣을 Texture와 Image 소스
     public Texture[] slotTex;
-    public RawImage[] slotRawImage;
+    public Image[] changeSlotImages;
     // 현재 바뀔 슬롯 위치 값 담은 변수
     public int slotPos = 0;
 
@@ -25,7 +27,7 @@ public class GameCtrl : MonoBehaviour
     public GameObject spawnerCube;
 
     // 지형 받을 변수
-    public GameObject plat;
+    //public GameObject plat;
 
     // 업무 재개 메시지 보관 변수
     public GameObject resumeMsg;
@@ -44,9 +46,9 @@ public class GameCtrl : MonoBehaviour
     private bool _gameSuccess = true;
     
     // 업무 남은 횟수 표시하는 객체 받아오기
-    public GameObject[] fuelBtn;
+    //public GameObject[] fuelBtn;
     // 업무 남은 횟수를 하얀색 이미지로 표시하기 위해 담을 변수
-    public Sprite whiteSprite;
+    //public Sprite whiteSprite;
 
     // 게임오버인지 상태 체크 변수
     private bool gameOver = true;
@@ -65,6 +67,8 @@ public class GameCtrl : MonoBehaviour
 
     // GameCtrl 인스턴스화를 위해 선언
     public static GameCtrl instance;
+
+    public TMP_Text textField;
 
     // GameCtrl 인스턴스화
     void Awake()
@@ -89,7 +93,8 @@ public class GameCtrl : MonoBehaviour
             // 오픈된 슬롯 만큼 다시 열어주는 역할
             for (int i = 0; i < slotPos; i++)
             {
-                slotImages[i].GetComponentInChildren<RawImage>().texture = slotTex[i];
+                //slotImages[i].GetComponentInChildren<Image>().sprite = changeSlotImages[i];
+                slotImages[i].SetActive(true);
             }
         }
         else
@@ -128,6 +133,7 @@ public class GameCtrl : MonoBehaviour
     void ResumeGame() {
         resumeMsg.SetActive(true);
         remainRound -= 1;
+        textField.text = "남은 기회 : [ " + remainRound + " ]";
         // 남은 라운드가 0인경우 실패 메시지 출력
         if (remainRound == 0)
         {
@@ -135,13 +141,13 @@ public class GameCtrl : MonoBehaviour
             timer.SetActive(false);
             StartCoroutine(FailMsg());
         } // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
-        else if (remainRound > 0)
-        {
-            for (int i = 3; i > remainRound; i--)
-            {
-                fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
-            }
-        }
+        // else if (remainRound > 0)
+        // {
+        //     for (int i = 3; i > remainRound; i--)
+        //     {
+        //         fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
+        //     }
+        // }
     }
 
     // 실패 메시지를 보여준 후 게임 실패 씬으로 이동

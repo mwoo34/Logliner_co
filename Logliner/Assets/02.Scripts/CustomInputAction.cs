@@ -22,7 +22,6 @@ public class CustomInputAction : MonoBehaviour
         /*bool isActive = !gameObject.activeSelf;
         gameObject.SetActive(isActive);*/
         SceneLoader.Instance.LoadNewScene("Chapter01");
-        
 
     }
 }

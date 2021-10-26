@@ -27,8 +27,9 @@ public class WallCtrl : MonoBehaviour
             Destroy(coll.gameObject);
             if (hp_count > 0)
             {
+                hearts[hp_count].SetActive(false);
                 GameCtrl.instance.heartCount -= 1;
-                hearts[hp_count - 1].GetComponent<RawImage>().texture = empty_heart;
+                //hearts[hp_count - 1].GetComponent<Image>().texture = empty_heart;
             }
         }
         

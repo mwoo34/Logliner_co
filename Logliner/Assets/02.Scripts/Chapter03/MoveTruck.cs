@@ -64,7 +64,7 @@ public class MoveTruck : MonoBehaviour
         // 지형과 매립지를 활성화 시키고 오디오를 실행
         //terrain.SetActive(true);
         //landfill.SetActive(true);
-        this.gameObject.GetComponent<AudioSource>().enabled = true;
+        //this.gameObject.GetComponent<AudioSource>().enabled = true;
         // 게임 성공시에만 생물 슬롯을 보여주기 위한 기능
         if (pos == 2)
         {
@@ -204,7 +204,7 @@ public class MoveTruck : MonoBehaviour
         landfill.SetActive(false);
         playerTr.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
-        this.gameObject.GetComponent<AudioSource>().enabled = false;
+        //this.gameObject.GetComponent<AudioSource>().enabled = false;
         GameObj.instance.uiMsg[3].SetActive(false);
         yield return new WaitForSeconds(2.0f);
         // 게임매니저에 알리기위해 기존과 다른 실패3과 성공4를 넣어서 보내고 챕터 이동

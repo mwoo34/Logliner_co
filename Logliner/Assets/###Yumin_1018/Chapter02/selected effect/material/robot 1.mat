@@ -298,7 +298,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - ice_level: 0
-    - is_selected: 1
+    - is_selected: 0
     m_Colors:
     - Color_11936B7C: {r: 30.209383, g: 26.571604, b: 14.551116, a: 0}
     - Color_335D905F: {r: 0.93366784, g: 1.5585637, b: 1.5585635, a: 0}

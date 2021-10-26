@@ -8,7 +8,6 @@ public class SceneLoader : Singleton<SceneLoader>
     public UnityEvent OnLoadBegin = new UnityEvent();
     public UnityEvent OnLoadEnd = new UnityEvent();
     public ScreenFader screenFader = null;
-    public TitleManager titleManager = null;
 
     private bool isLoading = false;
 
@@ -33,7 +32,6 @@ public class SceneLoader : Singleton<SceneLoader>
         isLoading = true;
         
         OnLoadBegin.Invoke();
-        titleManager.ChapterTitle(sceneName);
         yield return screenFader.StartFadeIn();
         yield return StartCoroutine(UnloadCurrent());
         yield return new WaitForSeconds(3.0f);// for testing
@@ -73,4 +71,3 @@ public class SceneLoader : Singleton<SceneLoader>
             StartCoroutine(LoadEnd());
     }
 }
-

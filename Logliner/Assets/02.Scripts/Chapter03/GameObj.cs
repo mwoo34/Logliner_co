@@ -6,11 +6,11 @@ using UnityEngine.AI;
 
 public class GameObj : MonoBehaviour
 {
-    // 게임매니저 인스턴스화를 위한 변수
+    // 씬 SettingXR 게임매니저 인스턴스화를 위한 변수
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = 4;
+    public static int checkGameSuccess = 0;
     public static int objManage;
     public GameObject collManage;
     public static int ch4FailorSucces = 1;
@@ -39,7 +39,6 @@ public class GameObj : MonoBehaviour
     // 자동 이동할 때 사용할 지형 터레인 담는 변수
     //public GameObject[] terrain;
     public GameObject terrain1;
-    public GameObject terrain2;
 
     // 싱글톤을 위해 선언
     void Awake()
@@ -55,12 +54,13 @@ public class GameObj : MonoBehaviour
     // 게임이 1(실패), 2(성공) 둘 다 차량 자동이동이 있기 때문에 코루틴으로 이동하는 함수 호출
     void Update()
     {
+        Debug.Log("Checkgame : " + checkGameSuccess);
         if (checkGameSuccess == 0)
         {
             leftCtrlSaber.GetComponent<Saber>().enabled = true;
             rightCtrlSaber.GetComponent<Saber>().enabled = true;
         }
-        if (checkGameSuccess > 0 && autoMove)
+        if ((checkGameSuccess == 1 || checkGameSuccess == 2) && autoMove)
         {
             autoMove = false;
             StartCoroutine(AutoMove());
@@ -70,7 +70,7 @@ public class GameObj : MonoBehaviour
             truck.SetActive(false);
             GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
             GameManager.Instance._XRrig.GetComponent<NavMeshAgent>().enabled = false;
-            GameManager.Instance._XRrig.GetComponent<AudioSource>().enabled = false;
+            //GameManager.Instance._XRrig.GetComponent<AudioSource>().enabled = false;
             //xrRig.GetComponent<MoveTruck>().enabled = false;
         }
         if (objManage == 1)
