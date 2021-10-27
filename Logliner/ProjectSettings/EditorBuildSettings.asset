@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter02_1_ori.unity
     guid: 6e5174c8bd519be4e83090d7cf061b96
   - enabled: 1
-    path: Assets/01.Scenes/Chapter03_0_ori.unity
+    path: Assets/01.Scenes/Chapter03_0_ori_ori.unity
     guid: 52a3051672c674a4da37653d5e96ad38
   - enabled: 1
     path: Assets/01.Scenes/Chapter03_1_game.unity
