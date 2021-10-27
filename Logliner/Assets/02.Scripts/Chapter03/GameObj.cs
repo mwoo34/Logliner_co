@@ -17,6 +17,8 @@ public class GameObj : MonoBehaviour
 
     public GameObject leftCtrlSaber;
     public GameObject rightCtrlSaber;
+    public GameObject[] leftShape;
+    public GameObject[] rightShape;
 
     // Update에서 호출 제한을 두기 위한 변수
     private bool autoMove = true;
@@ -63,7 +65,10 @@ public class GameObj : MonoBehaviour
         if ((checkGameSuccess == 1 || checkGameSuccess == 2) && autoMove)
         {
             autoMove = false;
-            StartCoroutine(AutoMove());
+            landfill.SetActive(true);
+            truck.SetActive(true);
+            GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
+            //StartCoroutine(AutoMove());
         }
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
         {

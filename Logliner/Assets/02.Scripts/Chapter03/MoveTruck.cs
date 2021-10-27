@@ -28,10 +28,6 @@ public class MoveTruck : MonoBehaviour
     //private bool moveState = false;
     //public float lookUpDist = 45.0f;
 
-    // 컨트롤러의 모양을 담을 변수, 수정 필요
-    public GameObject leftController;
-    public GameObject rightController;
-
     // 게임 상태에 따라 메시지 담을 변수
     public GameObject noticeMsg1;
     // 지형 터레인을 담을 변수
@@ -55,9 +51,11 @@ public class MoveTruck : MonoBehaviour
         agent.updateRotation = false;
         this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         // 주인공 시작위치 변경하고 정화세이버에 사용한 컨트롤러 꺼줌
-        //playerTr.transform.SetPositionAndRotation(new Vector3(16.0f, 2.0f, 7.0f), Quaternion.Euler(0f, 45.0f, 0f));
-        leftController.SetActive(false);
-        rightController.SetActive(false);
+        //playerTr.transform.SetPositionAndRotation(new Vector3(0f, 0f, 7.0f), Quaternion.Euler(0f, 0f, 0f));
+        GameObj.instance.leftShape[1].SetActive(false);
+        GameObj.instance.rightShape[1].SetActive(false);
+        GameObj.instance.leftShape[0].SetActive(true);
+        GameObj.instance.rightShape[0].SetActive(true);
         // 1실패 2성공의 값을 pos에 담고 그에 맞는 메시지창을 닫음
         int pos = GameObj.checkGameSuccess;
         noticeMsg1 = GameObj.instance.uiMsg[pos - 1];
@@ -73,9 +71,10 @@ public class MoveTruck : MonoBehaviour
                 slot[i].SetActive(true);
             }
         }
+        //StartCoroutine(NavMove());
         // 자동 이동 시작하는 코루틴
         if (GameObj.checkGameSuccess == 1 || GameObj.checkGameSuccess == 2)
-            StartCoroutine(PlayerBehaviour());
+            StartCoroutine(NavMove());
     }
 
     // 도착지를 계속 탐색해서 찾아가는 함수
@@ -91,6 +90,12 @@ public class MoveTruck : MonoBehaviour
                 playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, Time.deltaTime * 10.0f);
             }
         }
+    }
+
+    IEnumerator NavMove()
+    {
+        yield return new WaitForSeconds(4.0f);
+        StartCoroutine(PlayerBehaviour());
     }
 
     // 주인공과 매립지 거리를 확인해서 state에 반영하고 state값에 따라 이동 or 정지 상태를 코루틴으로 반복 호출
@@ -179,6 +184,7 @@ public class MoveTruck : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
         // 다시 업무를 이어서 할지 수락과 거절로 묻는 기능
+        
         GameObj.instance.uiMsg[3].SetActive(true);
         successBtn[0].onClick.AddListener(AcceptBtn); // 수락 버튼
         successBtn[1].onClick.AddListener(RejectBtn); // 거절 버튼

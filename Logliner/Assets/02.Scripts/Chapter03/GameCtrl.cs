@@ -81,6 +81,10 @@ public class GameCtrl : MonoBehaviour
     void Start()
     {
         GameObj.checkGameSuccess = 0;
+        GameObj.instance.leftShape[0].SetActive(false);
+        GameObj.instance.rightShape[0].SetActive(false);
+        GameObj.instance.leftShape[1].SetActive(true);
+        GameObj.instance.rightShape[1].SetActive(true);
         // 기존에 저장된 값이 있는지 확인
         isSave = PlayerPrefs.HasKey("SlotPos");
         // 데이터가 있다면 불러오고 없으면 넘어감
@@ -158,7 +162,7 @@ public class GameCtrl : MonoBehaviour
         failMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         GameObj.checkGameSuccess = 1;
-        SceneLoader.Instance.LoadNewScene("Chapter03_2_gameFail");
+        SceneLoader.Instance.LoadNewScene("Chapter03_2_landFill");
     }
 
     // 게임 성공 메시지를 보여준 후 게임 성공 씬으로 이동
@@ -169,6 +173,6 @@ public class GameCtrl : MonoBehaviour
         sucMsg.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         GameObj.checkGameSuccess = 2;
-        SceneLoader.Instance.LoadNewScene("Chapter03_3_gameWin");
+        SceneLoader.Instance.LoadNewScene("Chapter03_2_landFill");
     }
 }

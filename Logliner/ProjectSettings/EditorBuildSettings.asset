@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/01.Scenes/SettingXR.unity
-    guid: d725136d5684b3446a2da0e58f7bf00a
+    guid: 80a52aa17cf5bca4482d4e843420f678
   - enabled: 1
     path: Assets/01.Scenes/Chapter00.unity
     guid: aaf843c01a907194495efdfc60ee6a5a
@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter03_1_game.unity
     guid: 4fb9b6c47511504498af63f26f23a972
   - enabled: 1
-    path: Assets/01.Scenes/Chapter03_2_gameFail.unity
+    path: Assets/01.Scenes/Chapter03_2_landFill.unity
     guid: 9605e8403fe4d7a4fadd5285a9bbca2f
   - enabled: 1
     path: Assets/01.Scenes/Chapter03_3_gameWin.unity
@@ -45,8 +45,8 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter04_3_credit.unity
     guid: 96d9e5dd4fdc24348b00400c59662778
   - enabled: 1
-    path: Assets/01.Scenes/Chapter03_0_hu.unity
-    guid: c9075baa77c0bbf4a95a29d135a81dc1
+    path: Assets/01.Scenes/Chapter02_1_1025last.unity
+    guid: 21a5be2b0a1b1894c8926a6f96c70c71
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 05d77055a3906c4468c7c745554428b3, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8ca668a9cbfb8d94782ac337b7c48d5e, type: 2}
