@@ -13,7 +13,7 @@ public class LodingBar : MonoBehaviour
     void Start()
     {
         //lodingBar = this.gameObject.GetComponent<Image>();
-        lodingBar = GameObject.FindGameObjectWithTag("LODDING_BAR")?.GetComponent<Image>();
+        lodingBar = GameObject.FindGameObjectWithTag("LOADINGBAR")?.GetComponent<Image>();
         //currLoding = initLoding;
         StartCoroutine(ChargeLoding());
     }

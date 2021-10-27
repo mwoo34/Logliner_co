@@ -10,7 +10,7 @@ public class GameObj : MonoBehaviour
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = 0;
+    public static int checkGameSuccess = 3;
     public static int objManage;
     public GameObject collManage;
     public static int ch4FailorSucces = 1;
