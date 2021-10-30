@@ -217,6 +217,8 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 1)
         {
             GameObj.checkGameSuccess = 3;
+            GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
+            GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         }
         if (GameObj.checkGameSuccess == 2)

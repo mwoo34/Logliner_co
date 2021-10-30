@@ -14,7 +14,10 @@ TagManager:
   - XRRIG
   - COLLIDER
   - LOADINGBAR
-  - LODDING_BAR
+  - GREENBTN
+  - BLUEBTN
+  - REDBTN
+  - STOPBTN
   layers:
   - Default
   - TransparentFX

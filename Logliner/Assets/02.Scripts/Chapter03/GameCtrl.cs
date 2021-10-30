@@ -80,7 +80,8 @@ public class GameCtrl : MonoBehaviour
     // 내부 레지스터 값 지움
     void Start()
     {
-        GameObj.checkGameSuccess = 0;
+        StartCoroutine(StartGame());
+        //GameObj.checkGameSuccess = 0;
         GameObj.instance.leftShape[0].SetActive(false);
         GameObj.instance.rightShape[0].SetActive(false);
         GameObj.instance.leftShape[1].SetActive(true);
@@ -152,6 +153,12 @@ public class GameCtrl : MonoBehaviour
         //         fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
         //     }
         // }
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(7.0f);
+        GameObj.checkGameSuccess = 0;
     }
 
     // 실패 메시지를 보여준 후 게임 실패 씬으로 이동

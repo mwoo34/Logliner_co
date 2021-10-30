@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/SettingXR.unity
+    path: Assets/01.Scenes/SettingXR_old.unity
     guid: 80a52aa17cf5bca4482d4e843420f678
   - enabled: 1
     path: Assets/01.Scenes/Chapter00.unity
