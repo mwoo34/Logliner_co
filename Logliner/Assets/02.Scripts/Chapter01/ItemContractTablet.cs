@@ -27,20 +27,20 @@ public class ItemContractTablet : MonoBehaviour
     public XRSimpleInteractable btnOK;
     public XRSimpleInteractable btnSign;
 
-    //È®ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ° flag
+    //È®ÀÎ, ¼­¸í¹öÆ° flag
     private bool _btnChange = false;
     private bool _deActivate = false;
 
-    //ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½
+    //ÀÎÅÍ·º¼Ç UI ¼³Á¤
     void Start()
     {
         _tabletposition = _ContractTablet.GetComponent<Transform>().localPosition;
         _tabletrotation = _ContractTablet.GetComponent<Transform>().localRotation;
         //PlayMemory();
     }
-    
+
     /// <summary>
-    /// ï¿½ï¿½ï¿½
+    /// Àâ±â
     /// </summary>
     public void OnGrab()
     {
@@ -52,21 +52,20 @@ public class ItemContractTablet : MonoBehaviour
 
         if(!_btnChange)
         {
-            //È®ï¿½ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­
+            //È®ÀÎ ¹öÆ° È°¼ºÈ­
             btnOK.gameObject.SetActive(true);
             btnSign.gameObject.SetActive(false);
         }
         else
         {
-            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­
+            //¼­¸í ¹öÆ° È°¼ºÈ­
             btnSign.gameObject.SetActive(true);
             btnOK.gameObject.SetActive(false);
         }
 
     }
-    
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½ß¸ï¿½
+    /// ¶³¾î¶ß¸²
     /// </summary>
     public void OnDrop()
     {
@@ -81,13 +80,13 @@ public class ItemContractTablet : MonoBehaviour
             //isTrigger
             _colTablet.isTrigger = false;
 
-            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+            //¿ø·¡ ÀÚ¸®·Î µ¹¾Æ°¨
             _ContractTablet.GetComponent<Transform>().localPosition = _tabletposition;
             _ContractTablet.GetComponent<Transform>().localRotation = _tabletrotation;
         }
     }
     /// <summary>
-    /// È®ï¿½Î¹ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
+    /// È®ÀÎ¹öÆ° ´©¸§
     /// </summary>
     public void OnSelectConfirm()
     {
@@ -96,11 +95,11 @@ public class ItemContractTablet : MonoBehaviour
         _deActivate = true;
         contractTablet.enabled = false;
 
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+        //¿ø·¡ ÀÚ¸®·Î µ¹¾Æ°¨
         _ContractTablet.GetComponent<Transform>().localPosition = _tabletposition;
         _ContractTablet.GetComponent<Transform>().localRotation = _tabletrotation;
 
-        //ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½, Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //Ãæµ¹¹«½Ã, Ã¥»óÀ§¿¡ °íÁ¤
         _ContractTablet.GetComponent<Rigidbody>().isKinematic = true;
 
         btnOK.gameObject.SetActive(false);
@@ -109,7 +108,7 @@ public class ItemContractTablet : MonoBehaviour
         onContractConfirmComplete();
     }
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
+    /// ¼­¸íÈ®ÀÎ ¹öÆ° ´©¸§
     /// </summary>
     public void OnSelectSign()
     {
@@ -131,7 +130,7 @@ public class ItemContractTablet : MonoBehaviour
         }
         //mission complete
         onContractSignComplete();
-        //Ã©ï¿½ï¿½Å¸ï¿½ï¿½Æ²
+        //Ã©ÅÍÅ¸ÀÌÆ²
     }
     public void ActivateContract()
     {

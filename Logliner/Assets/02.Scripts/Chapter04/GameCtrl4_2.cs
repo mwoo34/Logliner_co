@@ -59,6 +59,7 @@ public class GameCtrl4_2 : MonoBehaviour
             StopAllCoroutines();
             GameObj04.instance._distance = true;
             GameObj04.instance.state = gameState;
+            windowBar.GetComponent<Animator>().SetBool("onLight", false);
             //StartCoroutine(NoticeMsg());
         }
     }

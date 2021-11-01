@@ -206,25 +206,25 @@ public class MoveTruck : MonoBehaviour
 
     // 활성화 된 객체를 끄고 사용자를 원래 위치로 놓고 변수 값에 따라 성공, 실패 씬으로 이동
     IEnumerator ChangeScene() {
+        yield return new WaitForSeconds(2.0f);
         terrain.SetActive(false);
         landfill.SetActive(false);
         playerTr.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //this.gameObject.GetComponent<AudioSource>().enabled = false;
         GameObj.instance.uiMsg[3].SetActive(false);
-        yield return new WaitForSeconds(2.0f);
         // 게임매니저에 알리기위해 기존과 다른 실패3과 성공4를 넣어서 보내고 챕터 이동
         if (GameObj.checkGameSuccess == 1)
         {
             GameObj.checkGameSuccess = 3;
+            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
             GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
             GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
-            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         }
         if (GameObj.checkGameSuccess == 2)
         {
             GameObj.checkGameSuccess = 4;
-            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
         }
     }
 }

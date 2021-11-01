@@ -35,12 +35,11 @@ public class GameObj : MonoBehaviour
     // 매립지 객체 담는 변수
     public GameObject landfill;
 
-    // XR Rig 카메라 담는 변수
-    //public GameObject xrRig;
-
     // 자동 이동할 때 사용할 지형 터레인 담는 변수
     //public GameObject[] terrain;
     public GameObject terrain1;
+
+    public Button[] checkBtn;
 
     // 싱글톤을 위해 선언
     void Awake()
@@ -56,6 +55,8 @@ public class GameObj : MonoBehaviour
     // 게임이 1(실패), 2(성공) 둘 다 차량 자동이동이 있기 때문에 코루틴으로 이동하는 함수 호출
     void Update()
     {
+        checkBtn[0].onClick.AddListener(ChangeScene);
+        checkBtn[1].onClick.AddListener(ChangeScene);
         Debug.Log("Checkgame : " + checkGameSuccess);
         if (checkGameSuccess == 0)
         {
@@ -98,5 +99,13 @@ public class GameObj : MonoBehaviour
         terrain1.SetActive(true);
         yield return new WaitForSeconds(4.0f);
         GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
+    }
+
+    public void ChangeScene()
+    {
+        if (checkGameSuccess == 3)
+            SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
+        else if (checkGameSuccess == 4)
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
     }
 }
