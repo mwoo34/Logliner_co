@@ -33,6 +33,7 @@ public class HeadCollider : MonoBehaviour
                 hearts[hp_count].SetActive(false);
                 GameCtrl.instance.heartCount -= 1;
             }
+            hearts[hp_count - 1].SetActive(true);
         }
     }
 }

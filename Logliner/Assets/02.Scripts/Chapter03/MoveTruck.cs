@@ -94,7 +94,7 @@ public class MoveTruck : MonoBehaviour
 
     IEnumerator NavMove()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(5.0f);
         StartCoroutine(PlayerBehaviour());
     }
 

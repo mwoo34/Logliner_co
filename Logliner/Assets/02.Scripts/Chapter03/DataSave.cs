@@ -15,6 +15,7 @@ public class DataSave : MonoBehaviour
         PlayerPrefs.SetInt("RemainRound", remainRound);
         PlayerPrefs.Save();
         Debug.Log("저장 되었습니다");
+        GameCtrl.instance.resumeMsg.SetActive(false);
         ChangeScene();
     }
 

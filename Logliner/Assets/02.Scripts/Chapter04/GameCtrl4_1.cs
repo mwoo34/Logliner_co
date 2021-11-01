@@ -16,6 +16,7 @@ public class GameCtrl4_1 : MonoBehaviour
     public bool _inputActive;
 
     public GameObject[] planets;
+    public GameObject planet;
     public Animator anim;
     public Button btn;
     public GameObject[] dissolve;
@@ -76,6 +77,7 @@ public class GameCtrl4_1 : MonoBehaviour
 
     IEnumerator ShowAnim()
     {
+        planet.SetActive(true);
         MovePlanet();
         yield return new WaitForSeconds(8.0f);
         for (int i = 2; i < 5; i++)
@@ -93,6 +95,7 @@ public class GameCtrl4_1 : MonoBehaviour
 
     public void Display()
     {
+        uiMsg[4].SetActive(false);
         StartCoroutine(ChargeLoading());
     }
 
@@ -116,7 +119,15 @@ public class GameCtrl4_1 : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         Debug.Log(gameState + "활성화");
-        if (value == 40 || value == 100)
+        if (value == 40 || value == 100) {
             dissolve[gameState].SetActive(true);
+            StartCoroutine(ChangeScene());
+        }
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(7.0f);
+        SceneLoader.Instance.LoadNewScene("Chapter04_2_base");
     }
 }

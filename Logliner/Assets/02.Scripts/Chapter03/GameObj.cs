@@ -10,7 +10,7 @@ public class GameObj : MonoBehaviour
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = 0;
+    public static int checkGameSuccess = 4;
     public static int objManage;
     public GameObject collManage;
     public static int ch4FailorSucces = 1;
@@ -67,14 +67,14 @@ public class GameObj : MonoBehaviour
             autoMove = false;
             landfill.SetActive(true);
             truck.SetActive(true);
-            GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
-            //StartCoroutine(AutoMove());
+            //GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
+            StartCoroutine(AutoMove());
         }
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
         {
             truck.SetActive(false);
-            GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
             GameManager.Instance._XRrig.GetComponent<NavMeshAgent>().enabled = false;
+            GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
             //GameManager.Instance._XRrig.GetComponent<AudioSource>().enabled = false;
             //xrRig.GetComponent<MoveTruck>().enabled = false;
         }
@@ -92,10 +92,11 @@ public class GameObj : MonoBehaviour
     IEnumerator AutoMove()
     {
         // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
-        yield return new WaitForSeconds(4.0f);
         //terrain.SetActive(true);
         landfill.SetActive(true);
         truck.SetActive(true);
+        terrain1.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
         GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
     }
 }

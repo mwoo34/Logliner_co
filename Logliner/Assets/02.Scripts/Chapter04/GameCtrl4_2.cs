@@ -15,6 +15,7 @@ public class GameCtrl4_2 : MonoBehaviour
     public Transform playerTr;
     // 도착지의 위치 담을 변수
     public Transform windowTr;
+    private bool _distance;
 
     void Start()
     {
@@ -34,7 +35,11 @@ public class GameCtrl4_2 : MonoBehaviour
 
     void Update()
     {
-        
+        // if (_distance)
+        // {
+        //     _distance = false;
+        //     StartCoroutine(NoticeMsg());
+        // }
     }
 
     IEnumerator PlayerBehaviour()
@@ -51,15 +56,16 @@ public class GameCtrl4_2 : MonoBehaviour
         Debug.Log("주인공과 창문 거리 : " + distance);
         if (distance < 3.0f)
         {
-            //windowBar.GetComponent<Animator>().SetBool("onLight", true);
             StopAllCoroutines();
-            StartCoroutine(NoticeMsg());
+            GameObj04.instance._distance = true;
+            GameObj04.instance.state = gameState;
+            //StartCoroutine(NoticeMsg());
         }
     }
 
-    IEnumerator NoticeMsg()
-    {
-        yield return new WaitForSeconds(3.0f);
-        noticeMsg[gameState].SetActive(true);
-    }
+    // IEnumerator NoticeMsg()
+    // {
+    //     yield return new WaitForSeconds(3.0f);
+    //     noticeMsg[gameState].SetActive(true);
+    // }
 }

@@ -80,6 +80,12 @@ public class GameCtrl : MonoBehaviour
     // 내부 레지스터 값 지움
     void Start()
     {
+        // for (int i = 0; i < heartCount; i++)
+        // {
+        //     hpImages[i].SetActive(false);
+        // }
+        // hpImages[heartCount].SetActive(true);
+        //resumeMsg.SetActive(false);
         StartCoroutine(StartGame());
         //GameObj.checkGameSuccess = 0;
         GameObj.instance.leftShape[0].SetActive(false);
@@ -138,6 +144,7 @@ public class GameCtrl : MonoBehaviour
     void ResumeGame() {
         resumeMsg.SetActive(true);
         remainRound -= 1;
+        Debug.Log("remainRound : " + remainRound);
         textField.text = "남은 기회 : [ " + remainRound + " ]";
         // 남은 라운드가 0인경우 실패 메시지 출력
         if (remainRound == 0)

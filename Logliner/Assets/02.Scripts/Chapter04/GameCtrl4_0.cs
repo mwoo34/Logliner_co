@@ -76,6 +76,6 @@ public class GameCtrl4_0 : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = false;
         GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = false;
-        SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
+        SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
     }
 }
