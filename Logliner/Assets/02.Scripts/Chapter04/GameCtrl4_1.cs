@@ -5,17 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class GameCtrl4_1 : MonoBehaviour
 {
+    private int gameState;
     public GameObject[] uiMsg;
     private int uiPos = 0;
-    private int gameState;
-    //public PlayableDirector playableDirector;
-    //public TimelineAsset timeline;
+    public GameObject inputActive;
+    public bool _inputActive;
+
     public GameObject[] planets;
     public Animator anim;
     public Button btn;
+    public GameObject[] dissolve;
 
     // 로딩 바 부분
     private float initLoding = 0.05f;
@@ -23,7 +26,15 @@ public class GameCtrl4_1 : MonoBehaviour
     public Image lodingBar;
     private float chargeAmount;
     private float maxAmount;
+    int value = 0;
     public TMP_Text textField;
+
+    public static GameCtrl4_1 instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -43,12 +54,14 @@ public class GameCtrl4_1 : MonoBehaviour
         Debug.Log("gamestate : " + gameState);
         //gameState = GameObj.checkGameSuccess;
         StartCoroutine(NoticeMsg());
-        //btn.onClick.AddListener
     }
 
     void Update()
     {
-        
+        if (_inputActive)
+        {
+            Display();
+        }
     }
 
     IEnumerator NoticeMsg()
@@ -69,6 +82,7 @@ public class GameCtrl4_1 : MonoBehaviour
         {
             uiMsg[i].SetActive(true);
         }
+        //inputActive.SetActive(true);
         btn.onClick.AddListener(Display);
     }
 
@@ -88,12 +102,21 @@ public class GameCtrl4_1 : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (lodingBar.fillAmount <= maxAmount)
             StartCoroutine(ChargeLoading());
-        else
-            StopAllCoroutines();
     }
 
     void DisplayLoding()
     {
         lodingBar.fillAmount += chargeAmount;
+        value = (int)(lodingBar.fillAmount * 100);
+        textField.text = "지구화 진행도 " + value + "%";
+        StartCoroutine(DissolveEffect());
+    }
+
+    IEnumerator DissolveEffect()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log(gameState + "활성화");
+        if (value == 40 || value == 100)
+            dissolve[gameState].SetActive(true);
     }
 }

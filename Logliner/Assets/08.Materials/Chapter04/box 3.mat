@@ -118,7 +118,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.32547158, g: 0.6488545, b: 1, a: 1}
+    - _FresnelColor: {r: 1, g: 0.98039216, b: 0.5529412, a: 1}
     - _HexColor: {r: 5.1110773, g: 12.689571, b: 33.662613, a: 0}
     - _HexColor2: {r: 1.8414695, g: 5.410765, b: 8.675366, a: 0}
     - _LevelsEnd: {r: 0, g: 1, b: 0, a: 1}
