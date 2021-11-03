@@ -63,12 +63,14 @@ public class GameCtrl : MonoBehaviour
     private bool isSave;
 
     // 오디오 받을 변수
-    private AudioSource audio;
+    //private AudioSource audio;
 
     // GameCtrl 인스턴스화를 위해 선언
     public static GameCtrl instance;
 
     public TMP_Text textField;
+
+    public AudioSource[] audioSources;
 
     // GameCtrl 인스턴스화
     void Awake()
@@ -80,6 +82,8 @@ public class GameCtrl : MonoBehaviour
     // 내부 레지스터 값 지움
     void Start()
     {
+        audioSources[0].Play();
+        audioSources[1].Play();
         // for (int i = 0; i < heartCount; i++)
         // {
         //     hpImages[i].SetActive(false);
@@ -114,7 +118,7 @@ public class GameCtrl : MonoBehaviour
         }
         // 불러왔기 때문에 저장된 데이터 전체 삭제함
         PlayerPrefs.DeleteAll();
-        audio = gameObject.GetComponent<AudioSource>();
+        //audio = gameObject.GetComponent<AudioSource>();
         GameObj.objManage = 1;
     }
 
@@ -125,7 +129,8 @@ public class GameCtrl : MonoBehaviour
         if (gameOver && heartCount == 0)
         {
             gameOver = false;
-            audio.Stop();
+            //audio.Stop();
+            audioSources[0].Stop();
             ResumeGame();
         }
         // 게임을 성공하면 장애물 스폰과 오디오를 끄고 성공 메시지창 띄움
@@ -133,7 +138,8 @@ public class GameCtrl : MonoBehaviour
         {
             _gameSuccess = false;
             spawnerCube.SetActive(false);
-            audio.Stop();
+            //audio.Stop();
+            audioSources[0].Stop();
             timer.SetActive(false);
             StartCoroutine(SucMsg());
         }
@@ -142,6 +148,7 @@ public class GameCtrl : MonoBehaviour
     // 5개 목숨을 다 잃고 나타나는 업무재개창과 
     // 몇번째 시도인지에 따라 메시지창에 기회가 몇 번 남았는지 알리는 역할
     void ResumeGame() {
+        GameObj.checkGameSuccess = -1;
         resumeMsg.SetActive(true);
         remainRound -= 1;
         Debug.Log("remainRound : " + remainRound);
@@ -164,7 +171,7 @@ public class GameCtrl : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(5.0f);
         GameObj.checkGameSuccess = 0;
     }
 

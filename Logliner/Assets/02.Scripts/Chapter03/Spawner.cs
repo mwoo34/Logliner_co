@@ -14,18 +14,21 @@ public class Spawner : MonoBehaviour
     
     void Update()
     {
-        // 목숨을 다 잃으면 스폰 스크립트를 비활성화 함
-        if (GameCtrl.instance.heartCount == 0) {
-            gameObject.SetActive(false);
+        if (GameObj.checkGameSuccess == 0)
+        {
+            // 목숨을 다 잃으면 스폰 스크립트를 비활성화 함
+            if (GameCtrl.instance.heartCount == 0) {
+                gameObject.SetActive(false);
+            }
+            // 3개의 스폰위치에서 3개의 장애물이 랜덤으로 생성
+            if (timer > beat && GameCtrl.instance.heartCount > 0) {
+                GameObject cube = Instantiate(cubes[Random.Range(0, 3)], points[Random.Range(0, 3)]);
+                cube.transform.localPosition = Vector3.zero;
+                //cube.transform.Rotate(transform.forward, 90 * Random.Range(0, 4));
+                //cube.transform.Rotate(transform.forward);
+                timer -= beat;
+            }
+            timer += Time.deltaTime;
         }
-        // 3개의 스폰위치에서 3개의 장애물이 랜덤으로 생성
-        if (timer > beat && GameCtrl.instance.heartCount > 0) {
-            GameObject cube = Instantiate(cubes[Random.Range(0, 3)], points[Random.Range(0, 3)]);
-            cube.transform.localPosition = Vector3.zero;
-            //cube.transform.Rotate(transform.forward, 90 * Random.Range(0, 4));
-            //cube.transform.Rotate(transform.forward);
-            timer -= beat;
-        }
-        timer += Time.deltaTime;
     }
 }

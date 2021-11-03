@@ -41,6 +41,8 @@ public class GameObj : MonoBehaviour
 
     public Button[] checkBtn;
 
+    public AudioSource[] audioSources;
+
     // 싱글톤을 위해 선언
     void Awake()
     {
@@ -49,7 +51,7 @@ public class GameObj : MonoBehaviour
 
     void Start()
     {
-        
+        //audioSources[0].Play();
     }
 
     // 게임이 1(실패), 2(성공) 둘 다 차량 자동이동이 있기 때문에 코루틴으로 이동하는 함수 호출
@@ -87,6 +89,16 @@ public class GameObj : MonoBehaviour
         {
             collManage.SetActive(false);
         }
+        if (checkGameSuccess == 0 || checkGameSuccess == -1)
+        {
+            // audio.clip = audioClips[0];
+            // audio.Play();
+            audioSources[0].Play();
+        }
+        else
+        {
+            //audio.Stop();
+        }
     }
 
     // 트럭이 움직이기 전에 세팅을 위한 함수
@@ -106,6 +118,6 @@ public class GameObj : MonoBehaviour
         if (checkGameSuccess == 3)
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         else if (checkGameSuccess == 4)
-            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
     }
 }

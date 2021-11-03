@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/SettingXR.unity
     guid: dfcd57ef02d3e1342b707bd4b735b54e
   - enabled: 1
-    path: Assets/01.Scenes/Chapter03_0_1030.unity
+    path: Assets/01.Scenes/Chapter03_0.unity
     guid: be7da68a5e46a3c4881e4dde6034dd88
   - enabled: 1
     path: Assets/01.Scenes/Chapter03_1_game.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Chapter04_0_fail.unity
     guid: 0af0e84cf98005c47bceefadaf5fd178
   - enabled: 1
-    path: Assets/01.Scenes/Chapter04_1_blackUniverse_1030.unity
+    path: Assets/01.Scenes/Chapter04_1_blackUniverse.unity
     guid: 28178b403a7c3fc47adbc91308f7315e
   - enabled: 1
     path: Assets/01.Scenes/Chapter04_2_base.unity

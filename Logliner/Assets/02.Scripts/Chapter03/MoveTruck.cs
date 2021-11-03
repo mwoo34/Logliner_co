@@ -41,6 +41,8 @@ public class MoveTruck : MonoBehaviour
     // 성공 상태에서 작업을 계속할지 수락 거절을 위한 버튼
     public Button[] successBtn;
 
+    public AudioSource au;
+
     // 스크립트 시작할 때 초기값 설정
     void Start()
     {
@@ -166,6 +168,7 @@ public class MoveTruck : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             slot[i].SetActive(false);
             yield return new WaitForSeconds(0.5f);
+            au.Play();
             slot[i + 3].SetActive(true);
         }
         yield return new WaitForSeconds(1.0f);
@@ -224,7 +227,7 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 2)
         {
             GameObj.checkGameSuccess = 4;
-            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
+            SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
         }
     }
 }

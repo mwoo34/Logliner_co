@@ -10,7 +10,7 @@ public class Saber : MonoBehaviour
     // 컨트롤러로 해당 layer만 베기
     public LayerMask layer;
     private Vector3 previousPos;
-    private AudioSource au;
+    public AudioSource[] au;
     // Slot객체 받아오는 변수
     public GameObject[] slot;
 
@@ -19,7 +19,7 @@ public class Saber : MonoBehaviour
     
     void Start()
     {
-        au = gameObject.GetComponent<AudioSource>();
+        //au = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,9 +28,13 @@ public class Saber : MonoBehaviour
         slot = GameCtrl.instance.slotImages;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1, layer))
-        {   
+        {
             // hit한 순간에 사운드 효과
-            au.Play();
+            //au.Play();
+            if (hit.collider.CompareTag("CUBE"))
+                au[0].Play();
+            if (hit.collider.CompareTag("ITEMBOX"))
+                au[1].Play();
             // lock이 true일 때만 진입하고 바로 false로 바꿔서 잠금, 동시에 벨 때 슬롯 두개가 변경되는 것을 방지
             if (GameCtrl.instance._lock)
             {   

@@ -30,6 +30,8 @@ public class GameCtrl4_1 : MonoBehaviour
     int value = 0;
     public TMP_Text textField;
 
+    public GameObject[] audioObjs;
+
     public static GameCtrl4_1 instance;
 
     void Awake()
@@ -39,6 +41,8 @@ public class GameCtrl4_1 : MonoBehaviour
 
     void Start()
     {
+        audioObjs[0].GetComponent<AudioSource>().Play();
+        audioObjs[0].GetComponent<Animator>().SetBool("audioOn", true);
         if (GameObj.checkGameSuccess == 3)
         {
             gameState = 0; // 실패 상태 검은 우주
@@ -79,13 +83,18 @@ public class GameCtrl4_1 : MonoBehaviour
     {
         planet.SetActive(true);
         MovePlanet();
+        audioObjs[1].GetComponent<AudioSource>().Play();
+        audioObjs[1].GetComponent<Animator>().SetBool("audioOn", true);
         yield return new WaitForSeconds(8.0f);
-        for (int i = 2; i < 5; i++)
+        audioObjs[1].SetActive(false);
+        for (int i = 2; i < 4; i++)
         {
             uiMsg[i].SetActive(true);
         }
         //inputActive.SetActive(true);
-        btn.onClick.AddListener(Display);
+        //btn.onClick.AddListener(Display);
+        yield return new WaitForSeconds(5.0f);
+        Display();
     }
 
     public void MovePlanet()
@@ -95,14 +104,14 @@ public class GameCtrl4_1 : MonoBehaviour
 
     public void Display()
     {
-        uiMsg[4].SetActive(false);
+        //uiMsg[4].SetActive(false);
         StartCoroutine(ChargeLoading());
     }
 
     IEnumerator ChargeLoading()
     {
         DisplayLoding();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         if (lodingBar.fillAmount <= maxAmount)
             StartCoroutine(ChargeLoading());
     }

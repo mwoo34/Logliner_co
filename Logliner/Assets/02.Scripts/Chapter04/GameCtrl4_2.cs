@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameCtrl4_2 : MonoBehaviour
 {
+    // 0성공 1실패 상태
     private int gameState;
     public GameObject[] noticeMsg;
     private int msgPos = 0;
@@ -17,6 +18,8 @@ public class GameCtrl4_2 : MonoBehaviour
     public Transform windowTr;
     private bool _distance;
 
+    public AudioSource[] audioSources;
+
     void Start()
     {
         windowBar.GetComponent<Animator>().SetBool("onLight", true);
@@ -24,10 +27,13 @@ public class GameCtrl4_2 : MonoBehaviour
         if (GameObj.checkGameSuccess == 3)
         {
             gameState = 0;
+            audioSources[0].Play();
+            audioSources[1].Play();
         }
         else if (GameObj.checkGameSuccess == 4)
         {
             gameState = 1;
+            audioSources[1].Play();
         }
         grounds[gameState].SetActive(true);
         StartCoroutine(PlayerBehaviour());

@@ -31,6 +31,8 @@ public class GameObj04 : MonoBehaviour
 
     IEnumerator NoticeMsg()
     {
+        if (state == 0)
+            gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(3.0f);
         noticeMsg[state].SetActive(true);
         yield return new WaitForSeconds(3.0f);

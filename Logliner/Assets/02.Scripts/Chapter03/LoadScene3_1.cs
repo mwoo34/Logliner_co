@@ -8,4 +8,5 @@ public class LoadScene3_1 : MonoBehaviour
     public void ChangeScene() {
         SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
     }
+
 }

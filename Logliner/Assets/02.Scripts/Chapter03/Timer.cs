@@ -14,21 +14,36 @@ public class Timer : MonoBehaviour
     private int seconds;
     private int fraction;
     private bool progressGame;
+    private bool flag;
 
     public TMP_Text textField;
     
     // 시간은 70초로 초기 설정과 진행중인 상태를 true로 넣음
     void Start()
     {
-        startTime = Time.time + 13;
+        // if (GameObj.checkGameSuccess == 0)
+        // {
+        //     startTime = Time.time + 20;
+        //     progressGame = true;
+        // }
         progressGame = true;
+        flag = true;
     }
 
     // 진행중일동안 시간 보여주는 함수 실행
     void Update()
     {
-        if (progressGame)
+        if (progressGame && GameObj.checkGameSuccess == 0)
+        {
+            //startTime = Time.time + 20;
             ShowTime();
+            
+        }
+        if (flag && GameObj.checkGameSuccess == 0)
+        {
+            flag = false;
+            startTime = Time.time + 20;
+        }
     }
 
     // 시간을 계산해서 보여주는 함수

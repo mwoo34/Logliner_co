@@ -11,6 +11,8 @@ public class GameCtrl4_0 : MonoBehaviour
     public BoxCollider[] btns;
     public bool greenBtn, blueBtn, redBtn, stopBtn;
 
+    public AudioSource[] audioSources;
+
     public static GameCtrl4_0 instance;
 
     // GameCtrl 인스턴스화
@@ -21,8 +23,7 @@ public class GameCtrl4_0 : MonoBehaviour
 
     void Start()
     {
-        // 0은 실패 이후 장면, 1은 성공 이후 장면
-        //GameObj.ch4FailorSucces = 0;
+        audioSources[0].Play();
         StartCoroutine(NoticeMsg());
     }
 
@@ -42,40 +43,40 @@ public class GameCtrl4_0 : MonoBehaviour
         }
         if (stopBtn)
         {
+            stopBtn = false;
             StartCoroutine(CompleteBtn());
         }
     }
 
+    void PlaySound()
+    {
+        audioSources[1].Play();
+    }
+
     IEnumerator NoticeMsg()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(2.0f);
             noticeMsg[i].SetActive(true);
             yield return new WaitForSeconds(3.0f);
             noticeMsg[i].SetActive(false);
         }
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos].SetActive(true);
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos++].SetActive(false);
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos].SetActive(true);
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos++].SetActive(false);
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos].SetActive(true);
-        // yield return new WaitForSeconds(3.0f);
-        // noticeMsg[msgPos++].SetActive(false);
+        noticeMsg[2].SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        noticeMsg[2].SetActive(false);
         buttons[0].GetComponent<Animator>().SetBool("greenBtn", true);
     }
 
     IEnumerator CompleteBtn()
     {
         Debug.Log("버튼 모두 완성");
-        yield return new WaitForSeconds(3.0f);
+        audioSources[1].Play();
+        yield return new WaitForSeconds(1.0f);
+        audioSources[0].Stop();
+        yield return new WaitForSeconds(4.0f);
         GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = false;
         GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = false;
-        SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse_1030");
+        SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
     }
 }

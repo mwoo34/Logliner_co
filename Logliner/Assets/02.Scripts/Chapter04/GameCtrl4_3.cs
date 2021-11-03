@@ -5,12 +5,41 @@ using UnityEngine;
 public class GameCtrl4_3 : MonoBehaviour
 {
     public GameObject[] illustrations;
-    private int pos = 0;
+    private int pos = 10;
     public GameObject book;
+    public AudioSource audioSource;
 
     void Start()
     {
-        StartCoroutine(closeIllust());    
+        //StartCoroutine(closeIllust());
+        StartCoroutine(ShowImages());
+    }
+
+    IEnumerator ShowImages()
+    {
+        yield return new WaitForSeconds(5.0f);
+        for (int i = 0; i < 6; i++)
+        {
+            illustrations[i].SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            illustrations[i].SetActive(false);
+            yield return new WaitForSeconds(1.0f);
+        }
+        book.GetComponent<Animator>().SetBool("bookAnim", true);
+        yield return new WaitForSeconds(3.0f);
+        audioSource.Play();
+        yield return new WaitForSeconds(1.0f);
+        illustrations[6].SetActive(true);
+        illustrations[7].SetActive(true);
+        yield return new WaitForSeconds(7.0f);
+        illustrations[6].SetActive(false);
+        illustrations[7].SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        illustrations[8].SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        illustrations[8].SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        illustrations[9].SetActive(true);
     }
 
     IEnumerator closeIllust()
@@ -50,5 +79,4 @@ public class GameCtrl4_3 : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         illustrations[8].SetActive(true);
     }
-
 }
