@@ -75,7 +75,7 @@ public class GameCtrl4_1 : MonoBehaviour
         uiMsg[gameState].SetActive(true);
         yield return new WaitForSeconds(3.0f);
         uiMsg[gameState].SetActive(false);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
         StartCoroutine(ShowAnim());
     }
 
@@ -85,7 +85,7 @@ public class GameCtrl4_1 : MonoBehaviour
         MovePlanet();
         audioObjs[1].GetComponent<AudioSource>().Play();
         audioObjs[1].GetComponent<Animator>().SetBool("audioOn", true);
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(2.0f);
         audioObjs[1].SetActive(false);
         for (int i = 2; i < 4; i++)
         {
@@ -93,7 +93,7 @@ public class GameCtrl4_1 : MonoBehaviour
         }
         //inputActive.SetActive(true);
         //btn.onClick.AddListener(Display);
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         Display();
     }
 
@@ -111,7 +111,7 @@ public class GameCtrl4_1 : MonoBehaviour
     IEnumerator ChargeLoading()
     {
         DisplayLoding();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.15f);
         if (lodingBar.fillAmount <= maxAmount)
             StartCoroutine(ChargeLoading());
     }
@@ -130,13 +130,13 @@ public class GameCtrl4_1 : MonoBehaviour
         Debug.Log(gameState + "활성화");
         if (value == 40 || value == 100) {
             dissolve[gameState].SetActive(true);
-            StartCoroutine(ChangeScene());
+            yield return new WaitForSeconds(17.0f);
+            ChangeScene();
         }
     }
 
-    IEnumerator ChangeScene()
+    void ChangeScene()
     {
-        yield return new WaitForSeconds(7.0f);
         SceneLoader.Instance.LoadNewScene("Chapter04_2_base");
     }
 }

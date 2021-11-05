@@ -130,6 +130,7 @@ public class GameCtrl : MonoBehaviour
         {
             gameOver = false;
             //audio.Stop();
+            spawnerCube.SetActive(false);
             audioSources[0].Stop();
             ResumeGame();
         }
@@ -147,7 +148,7 @@ public class GameCtrl : MonoBehaviour
 
     // 5개 목숨을 다 잃고 나타나는 업무재개창과 
     // 몇번째 시도인지에 따라 메시지창에 기회가 몇 번 남았는지 알리는 역할
-    void ResumeGame() {
+    public void ResumeGame() {
         GameObj.checkGameSuccess = -1;
         resumeMsg.SetActive(true);
         remainRound -= 1;
@@ -159,7 +160,8 @@ public class GameCtrl : MonoBehaviour
             resumeMsg.SetActive(false);
             timer.SetActive(false);
             StartCoroutine(FailMsg());
-        } // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
+        } 
+        // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
         // else if (remainRound > 0)
         // {
         //     for (int i = 3; i > remainRound; i--)

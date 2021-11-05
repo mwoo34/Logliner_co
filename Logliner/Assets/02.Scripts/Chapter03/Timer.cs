@@ -60,11 +60,18 @@ public class Timer : MonoBehaviour
         // 제한 시간동안 살아있거나 아이템 슬롯을 채워서 성공한 경우 진입하는 부분
         if (minutes == 0 && seconds == 0 || GameCtrl.instance.GameSuccess == 2) 
         {
-            //textField.text = "정화 작업 성공!";
-            GameCtrl.instance.GameSuccess = 2;
-            Debug.Log("GameSuccess 값 : " + GameCtrl.instance.GameSuccess);
-            progressGame = false;
-            //GameObj.instance.checkGame = 1;
+            if (GameCtrl.instance.slotPos < 2)
+            {
+                GameCtrl.instance.ResumeGame();
+            }
+            else
+            {
+                //textField.text = "정화 작업 성공!";
+                GameCtrl.instance.GameSuccess = 2;
+                Debug.Log("GameSuccess 값 : " + GameCtrl.instance.GameSuccess);
+                progressGame = false;
+                //GameObj.instance.checkGame = 1;
+            }
         }
         else
         {

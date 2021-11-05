@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.XR.Interaction.Toolkit;
 public class GameCtrl4_2 : MonoBehaviour
 {
     // 0성공 1실패 상태
@@ -22,6 +22,8 @@ public class GameCtrl4_2 : MonoBehaviour
 
     void Start()
     {
+        //GameManager.Instance._XRrig.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
+        GameManager.Instance._XRrig.transform.localEulerAngles = new Vector3(0, 180, 0);
         windowBar.GetComponent<Animator>().SetBool("onLight", true);
         playerTr = GameManager.Instance._XRrig.GetComponent<Transform>();
         if (GameObj.checkGameSuccess == 3)

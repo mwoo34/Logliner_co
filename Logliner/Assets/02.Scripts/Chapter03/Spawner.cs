@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
         {
             // 목숨을 다 잃으면 스폰 스크립트를 비활성화 함
             if (GameCtrl.instance.heartCount == 0) {
-                gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
             }
             // 3개의 스폰위치에서 3개의 장애물이 랜덤으로 생성
             if (timer > beat && GameCtrl.instance.heartCount > 0) {

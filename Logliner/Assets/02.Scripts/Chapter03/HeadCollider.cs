@@ -12,6 +12,8 @@ public class HeadCollider : MonoBehaviour
     // 하트 갯수 담을 변수
     private int hp_count;
 
+    public AudioSource audioSource;
+
     void Start()
     {
         
@@ -26,6 +28,7 @@ public class HeadCollider : MonoBehaviour
     // 카메라에 캡슐을 하나 붙여서 돌에 맞는지 확인하는 함수
     void OnCollisionEnter(Collision coll) {
         if (coll.collider.CompareTag("ROCKS")) {
+            audioSource.Play();
             Destroy(coll.gameObject);
             hp_count = GameCtrl.instance.heartCount;
             if (hp_count > 0) {

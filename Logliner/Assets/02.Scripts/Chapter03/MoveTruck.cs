@@ -171,21 +171,24 @@ public class MoveTruck : MonoBehaviour
             au.Play();
             slot[i + 3].SetActive(true);
         }
-        yield return new WaitForSeconds(1.0f);
-        // 성공 축하 메시지를 보여줌
-        GameObj.instance.uiMsg[2].SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        for (int i = 0; i < 3; i++)
-        {
-            slot[i].SetActive(false);
-        }
-        GameObj.instance.uiMsg[2].SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        //yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
+        // for (int i = 0; i < 3; i++)
+        // {
+        //     slot[i].SetActive(false);
+        // }
         for (int i = 0; i < 3; i++) 
         {
             slot[i + 3].SetActive(false);
         }
         yield return new WaitForSeconds(1.0f);
+        // 성공 축하 메시지를 보여줌
+        GameObj.instance.uiMsg[2].SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        GameObj.instance.uiMsg[2].SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        
+        //yield return new WaitForSeconds(1.0f);
         // 다시 업무를 이어서 할지 수락과 거절로 묻는 기능
         
         GameObj.instance.uiMsg[3].SetActive(true);
@@ -210,8 +213,8 @@ public class MoveTruck : MonoBehaviour
     // 활성화 된 객체를 끄고 사용자를 원래 위치로 놓고 변수 값에 따라 성공, 실패 씬으로 이동
     IEnumerator ChangeScene() {
         yield return new WaitForSeconds(2.0f);
-        terrain.SetActive(false);
-        landfill.SetActive(false);
+        // terrain.SetActive(false);
+        // landfill.SetActive(false);
         playerTr.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //this.gameObject.GetComponent<AudioSource>().enabled = false;
@@ -220,6 +223,8 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 1)
         {
             GameObj.checkGameSuccess = 3;
+            terrain.SetActive(false);
+            landfill.SetActive(false);
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
             GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
             GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
@@ -227,6 +232,8 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 2)
         {
             GameObj.checkGameSuccess = 4;
+            terrain.SetActive(false);
+            landfill.SetActive(false);
             SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
         }
     }

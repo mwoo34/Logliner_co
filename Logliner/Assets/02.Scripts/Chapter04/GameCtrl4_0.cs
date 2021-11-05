@@ -29,17 +29,33 @@ public class GameCtrl4_0 : MonoBehaviour
 
     void Update()
     {
+        // if (greenBtn)
+        // {
+        //     buttons[1].GetComponent<Animator>().SetBool("blueBtn", true);
+        // }
+        // if (greenBtn && blueBtn)
+        // {
+        //     buttons[2].GetComponent<Animator>().SetBool("redBtn", true);
+        // }
+        // if (greenBtn && blueBtn && redBtn)
+        // {
+        //     buttons[3].GetComponent<Animator>().SetBool("stopBtn", true);
+        // }
         if (greenBtn)
         {
+            Debug.Log("greenBtn이 true로 : " + greenBtn);
             buttons[1].GetComponent<Animator>().SetBool("blueBtn", true);
+            //buttons[0].GetComponent<Animator>().SetBool("greenBtn", false);
         }
         if (greenBtn && blueBtn)
         {
             buttons[2].GetComponent<Animator>().SetBool("redBtn", true);
+            //buttons[1].GetComponent<Animator>().SetBool("blueBtn", false);
         }
         if (greenBtn && blueBtn && redBtn)
         {
             buttons[3].GetComponent<Animator>().SetBool("stopBtn", true);
+            //buttons[2].GetComponent<Animator>().SetBool("redBtn", false);
         }
         if (stopBtn)
         {
