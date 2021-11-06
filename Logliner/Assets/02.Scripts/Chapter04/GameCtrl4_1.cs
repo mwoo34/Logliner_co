@@ -9,11 +9,10 @@ using UnityEngine.InputSystem;
 
 public class GameCtrl4_1 : MonoBehaviour
 {
+    public Material _skybox;
     private int gameState;
     public GameObject[] uiMsg;
     private int uiPos = 0;
-    public GameObject inputActive;
-    public bool _inputActive;
 
     public GameObject[] planets;
     public GameObject planet;
@@ -32,6 +31,9 @@ public class GameCtrl4_1 : MonoBehaviour
 
     public GameObject[] audioObjs;
 
+    // 임무안내창, 
+    public AudioSource[] audioSources;
+
     public static GameCtrl4_1 instance;
 
     void Awake()
@@ -41,8 +43,12 @@ public class GameCtrl4_1 : MonoBehaviour
 
     void Start()
     {
+        RenderSettings.skybox = _skybox;
+        GameManager.Instance.InitXrRigPosition();
+        GameManager.Instance.ActivateMovememt(false);
         audioObjs[0].GetComponent<AudioSource>().Play();
         audioObjs[0].GetComponent<Animator>().SetBool("audioOn", true);
+        planet.SetActive(false);
         if (GameObj.checkGameSuccess == 3)
         {
             gameState = 0; // 실패 상태 검은 우주
@@ -63,16 +69,14 @@ public class GameCtrl4_1 : MonoBehaviour
 
     void Update()
     {
-        if (_inputActive)
-        {
-            Display();
-        }
+        
     }
 
     IEnumerator NoticeMsg()
     {
         yield return new WaitForSeconds(3.0f);
         uiMsg[gameState].SetActive(true);
+        audioSources[0].Play();
         yield return new WaitForSeconds(3.0f);
         uiMsg[gameState].SetActive(false);
         yield return new WaitForSeconds(2.0f);
@@ -86,7 +90,7 @@ public class GameCtrl4_1 : MonoBehaviour
         audioObjs[1].GetComponent<AudioSource>().Play();
         audioObjs[1].GetComponent<Animator>().SetBool("audioOn", true);
         yield return new WaitForSeconds(2.0f);
-        audioObjs[1].SetActive(false);
+        //audioObjs[1].SetActive(false);
         for (int i = 2; i < 4; i++)
         {
             uiMsg[i].SetActive(true);

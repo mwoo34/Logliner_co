@@ -18,6 +18,7 @@ public class GameCtrl4_2 : MonoBehaviour
     public Transform windowTr;
     private bool _distance;
 
+    // 지구화실패 자연소리, 지구화실패 숲웅성, 지구화성공 쓸쓸한바람, 쌍따옴표메시지
     public AudioSource[] audioSources;
 
     void Start()
@@ -35,7 +36,7 @@ public class GameCtrl4_2 : MonoBehaviour
         else if (GameObj.checkGameSuccess == 4)
         {
             gameState = 1;
-            audioSources[1].Play();
+            audioSources[2].Play();
         }
         grounds[gameState].SetActive(true);
         StartCoroutine(PlayerBehaviour());
@@ -74,7 +75,11 @@ public class GameCtrl4_2 : MonoBehaviour
 
     // IEnumerator NoticeMsg()
     // {
-    //     yield return new WaitForSeconds(3.0f);
+    //     yield return new WaitForSeconds(5.0f);
     //     noticeMsg[gameState].SetActive(true);
+    //     audioSources[3].Play();
+    //     yield return new WaitForSeconds(5.0f);
+    //     noticeMsg[gameState].SetActive(false);
+    //     yield return new WaitForSeconds(10.0f);
     // }
 }

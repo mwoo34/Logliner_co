@@ -14,6 +14,7 @@ public class MissionCtrl : MonoBehaviour
     // 메시지를 보여줄 상태를 bool형 타입으로 선언
     private bool active = false;
     private bool missionGuide = false;
+    public AudioSource[] audioSources;
 
     // 메시지를 보여주기위해 코루틴 호출
     void Start()
@@ -25,11 +26,13 @@ public class MissionCtrl : MonoBehaviour
     void Update()
     {
         missionMsg.SetActive(active);
+        audioSources[0].Play();
         if (missionGuide) {
             //mission.GetComponent<SpriteRenderer>().sprite = sp;
             missionMsg.SetActive(!missionGuide);
             questMsg.SetActive(missionGuide);
-            accept_btn.SetActive(true);
+            audioSources[0].Play();
+            //accept_btn.SetActive(true);
         }
     }
 
@@ -42,5 +45,11 @@ public class MissionCtrl : MonoBehaviour
         active = false;
         yield return new WaitForSeconds(2.0f);
         missionGuide = true;
+    }
+
+    public void ChangeScene()
+    {
+        audioSources[1].Play();
+        SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
     }
 }

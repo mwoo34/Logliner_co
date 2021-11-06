@@ -11,6 +11,7 @@ public class GameCtrl4_0 : MonoBehaviour
     public BoxCollider[] btns;
     public bool greenBtn, blueBtn, redBtn, stopBtn;
 
+    // 차량내부배경음, 시동꺼지는소리, 임무안내, 정보설명, 클릭
     public AudioSource[] audioSources;
 
     public static GameCtrl4_0 instance;
@@ -45,17 +46,17 @@ public class GameCtrl4_0 : MonoBehaviour
         {
             Debug.Log("greenBtn이 true로 : " + greenBtn);
             buttons[1].GetComponent<Animator>().SetBool("blueBtn", true);
-            //buttons[0].GetComponent<Animator>().SetBool("greenBtn", false);
+            buttons[0].GetComponent<Animator>().SetBool("greenBtn", false);
         }
         if (greenBtn && blueBtn)
         {
             buttons[2].GetComponent<Animator>().SetBool("redBtn", true);
-            //buttons[1].GetComponent<Animator>().SetBool("blueBtn", false);
+            buttons[1].GetComponent<Animator>().SetBool("blueBtn", false);
         }
         if (greenBtn && blueBtn && redBtn)
         {
             buttons[3].GetComponent<Animator>().SetBool("stopBtn", true);
-            //buttons[2].GetComponent<Animator>().SetBool("redBtn", false);
+            buttons[2].GetComponent<Animator>().SetBool("redBtn", false);
         }
         if (stopBtn)
         {
@@ -75,11 +76,13 @@ public class GameCtrl4_0 : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
             noticeMsg[i].SetActive(true);
-            yield return new WaitForSeconds(3.0f);
+            audioSources[2].Play();
+            yield return new WaitForSeconds(4.0f);
             noticeMsg[i].SetActive(false);
         }
         noticeMsg[2].SetActive(true);
-        yield return new WaitForSeconds(5.0f);
+        audioSources[3].Play();
+        yield return new WaitForSeconds(7.0f);
         noticeMsg[2].SetActive(false);
         buttons[0].GetComponent<Animator>().SetBool("greenBtn", true);
     }

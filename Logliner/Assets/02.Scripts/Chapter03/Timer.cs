@@ -60,8 +60,10 @@ public class Timer : MonoBehaviour
         // 제한 시간동안 살아있거나 아이템 슬롯을 채워서 성공한 경우 진입하는 부분
         if (minutes == 0 && seconds == 0 || GameCtrl.instance.GameSuccess == 2) 
         {
-            if (GameCtrl.instance.slotPos < 2)
+            Debug.Log("slotPos값 : " + GameCtrl.instance.slotPos);
+            if (GameCtrl.instance.slotPos < 3)
             {
+                textField.text = "00:00";
                 GameCtrl.instance.ResumeGame();
             }
             else

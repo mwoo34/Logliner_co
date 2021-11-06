@@ -23,6 +23,7 @@ public class ButtonCtrl : MonoBehaviour
         greenBtnAnim.SetBool("pushBtn", true);
         boxColliders[pos].isTrigger = true;
         StartCoroutine(DelayTime());
+        greenBtnAnim.SetBool("greenBtn", false);
         GameCtrl4_0.instance.greenBtn = true;
         //boxColliders[1].isTrigger =  false;
         // if (!_greenBtn)
@@ -37,6 +38,7 @@ public class ButtonCtrl : MonoBehaviour
         blueBtnAnim.SetBool("pushBtn", true);
         boxColliders[pos].isTrigger = true;
         StartCoroutine(DelayTime());
+        greenBtnAnim.SetBool("blueBtn", false);
         GameCtrl4_0.instance.blueBtn = true;
         //boxColliders[2].isTrigger =  false;
         // if (_greenBtn && !_blueBtn)
@@ -51,6 +53,7 @@ public class ButtonCtrl : MonoBehaviour
         redBtnAnim.SetBool("pushBtn", true);
         boxColliders[pos].isTrigger = true;
         StartCoroutine(DelayTime());
+        greenBtnAnim.SetBool("redBtn", false);
         GameCtrl4_0.instance.redBtn = true;
         // if (!_greenBtn)
         // {
@@ -61,7 +64,7 @@ public class ButtonCtrl : MonoBehaviour
 
     public void OnSelectedStop()
     {
-        blueBtnAnim.SetBool("pushBtn", true);
+        blueBtnAnim.SetBool("stopBtn", false);
         boxColliders[pos].isTrigger = true;
         GameCtrl4_0.instance.stopBtn = true;
         // if (!_greenBtn)

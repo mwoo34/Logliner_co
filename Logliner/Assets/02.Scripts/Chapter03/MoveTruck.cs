@@ -30,6 +30,8 @@ public class MoveTruck : MonoBehaviour
 
     // 게임 상태에 따라 메시지 담을 변수
     public GameObject noticeMsg1;
+    int pos = 0;
+
     // 지형 터레인을 담을 변수
     public GameObject terrain;
     // 도착할 위치를 위해 매립지 담을 변수
@@ -41,7 +43,8 @@ public class MoveTruck : MonoBehaviour
     // 성공 상태에서 작업을 계속할지 수락 거절을 위한 버튼
     public Button[] successBtn;
 
-    public AudioSource au;
+    // 슬롯확대효과음, 정보설명, 클릭, 쌍따옴표메시지
+    public AudioSource[] audioSources;
 
     // 스크립트 시작할 때 초기값 설정
     void Start()
@@ -59,7 +62,7 @@ public class MoveTruck : MonoBehaviour
         GameObj.instance.leftShape[0].SetActive(true);
         GameObj.instance.rightShape[0].SetActive(true);
         // 1실패 2성공의 값을 pos에 담고 그에 맞는 메시지창을 닫음
-        int pos = GameObj.checkGameSuccess;
+        pos = GameObj.checkGameSuccess;
         noticeMsg1 = GameObj.instance.uiMsg[pos - 1];
         // 지형과 매립지를 활성화 시키고 오디오를 실행
         //terrain.SetActive(true);
@@ -147,6 +150,8 @@ public class MoveTruck : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         noticeMsg1.SetActive(true);
+        if (pos == 1) audioSources[3].Play();
+        else audioSources[1].Play();
         yield return new WaitForSeconds(2.0f);
         noticeMsg1.SetActive(false);
         yield return new WaitForSeconds(2.0f);
@@ -168,8 +173,8 @@ public class MoveTruck : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             slot[i].SetActive(false);
             yield return new WaitForSeconds(0.5f);
-            au.Play();
             slot[i + 3].SetActive(true);
+            audioSources[0].Play();
         }
         //yield return new WaitForSeconds(1.0f);
         yield return new WaitForSeconds(5.0f);
@@ -184,14 +189,15 @@ public class MoveTruck : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         // 성공 축하 메시지를 보여줌
         GameObj.instance.uiMsg[2].SetActive(true);
+        audioSources[1].Play();
         yield return new WaitForSeconds(5.0f);
         GameObj.instance.uiMsg[2].SetActive(false);
         yield return new WaitForSeconds(1.0f);
         
         //yield return new WaitForSeconds(1.0f);
         // 다시 업무를 이어서 할지 수락과 거절로 묻는 기능
-        
         GameObj.instance.uiMsg[3].SetActive(true);
+        audioSources[1].Play();
         successBtn[0].onClick.AddListener(AcceptBtn); // 수락 버튼
         successBtn[1].onClick.AddListener(RejectBtn); // 거절 버튼
     }
@@ -199,6 +205,7 @@ public class MoveTruck : MonoBehaviour
     // 수락 버튼을 선택하면 성공 2를 주고 챕터4 성공 씬으로 이동
     public void AcceptBtn()
     {
+        audioSources[2].Play();
         GameObj.checkGameSuccess = 2;
         StartCoroutine(ChangeScene());
     }
@@ -206,6 +213,7 @@ public class MoveTruck : MonoBehaviour
     // 거절 버튼을 선택하면 실패 1을 주고 챕터4 실패 씬으로 이동
     public void RejectBtn()
     {
+        audioSources[2].Play();
         GameObj.checkGameSuccess = 1;
         StartCoroutine(ChangeScene());
     }
@@ -223,18 +231,21 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 1)
         {
             GameObj.checkGameSuccess = 3;
-            terrain.SetActive(false);
-            landfill.SetActive(false);
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
+            // terrain.SetActive(false);
+            // landfill.SetActive(false);
             GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
             GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
         }
         if (GameObj.checkGameSuccess == 2)
         {
             GameObj.checkGameSuccess = 4;
-            terrain.SetActive(false);
-            landfill.SetActive(false);
             SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
+            // terrain.SetActive(false);
+            // landfill.SetActive(false);
         }
+        yield return new WaitForSeconds(1.0f);
+        terrain.SetActive(false);
+        landfill.SetActive(false);
     }
 }

@@ -31,8 +31,10 @@ public class GameCtrl : MonoBehaviour
 
     // 업무 재개 메시지 보관 변수
     public GameObject resumeMsg;
+    public Button resumeBtn;
     public GameObject failMsg;
     public GameObject sucMsg;
+    public bool _resume;
 
     // 업무 재개 가능한 횟수 변수
     public int remainRound = 3;
@@ -70,6 +72,7 @@ public class GameCtrl : MonoBehaviour
 
     public TMP_Text textField;
 
+    // 배경음, 차량시동, 임무안내, 정보설명, 버튼클릭
     public AudioSource[] audioSources;
 
     // GameCtrl 인스턴스화
@@ -125,13 +128,14 @@ public class GameCtrl : MonoBehaviour
     // 게임 실패 후 업무재개 화면
     void Update()
     {
+        resumeBtn.onClick.AddListener(DataSave);
         // 게임오버되고 하트 갯수가 0이라면 오디오를 멈추고 업무재개 메시지창 띄움
         if (gameOver && heartCount == 0)
         {
             gameOver = false;
             //audio.Stop();
-            spawnerCube.SetActive(false);
-            audioSources[0].Stop();
+            // spawnerCube.SetActive(false);
+            // audioSources[0].Stop();
             ResumeGame();
         }
         // 게임을 성공하면 장애물 스폰과 오디오를 끄고 성공 메시지창 띄움
@@ -149,8 +153,11 @@ public class GameCtrl : MonoBehaviour
     // 5개 목숨을 다 잃고 나타나는 업무재개창과 
     // 몇번째 시도인지에 따라 메시지창에 기회가 몇 번 남았는지 알리는 역할
     public void ResumeGame() {
+        spawnerCube.SetActive(false);
+        audioSources[0].Stop();
         GameObj.checkGameSuccess = -1;
         resumeMsg.SetActive(true);
+        audioSources[3].Play();
         remainRound -= 1;
         Debug.Log("remainRound : " + remainRound);
         textField.text = "남은 기회 : [ " + remainRound + " ]";
@@ -160,7 +167,7 @@ public class GameCtrl : MonoBehaviour
             resumeMsg.SetActive(false);
             timer.SetActive(false);
             StartCoroutine(FailMsg());
-        } 
+        }
         // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
         // else if (remainRound > 0)
         // {
@@ -183,6 +190,7 @@ public class GameCtrl : MonoBehaviour
         GameObj.objManage = 0;
         yield return new WaitForSeconds(2.0f);
         failMsg.SetActive(true);
+        audioSources[3].Play();
         yield return new WaitForSeconds(3.0f);
         GameObj.checkGameSuccess = 1;
         SceneLoader.Instance.LoadNewScene("Chapter03_2_landFill");
@@ -194,8 +202,35 @@ public class GameCtrl : MonoBehaviour
         GameObj.objManage = 0;
         yield return new WaitForSeconds(2.0f);
         sucMsg.SetActive(true);
+        audioSources[3].Play();
         yield return new WaitForSeconds(3.0f);
         GameObj.checkGameSuccess = 2;
         SceneLoader.Instance.LoadNewScene("Chapter03_2_landFill");
+    }
+
+    public void DataSave()
+    {
+        audioSources[4].Play();
+        SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
+        resumeMsg.SetActive(false);
+        Debug.Log("DataSave 들어옴");
+        //GameCtrl.instance._resume = true;
+        //SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
+        int slotPos = GameCtrl.instance.slotPos;
+        int remainRound = GameCtrl.instance.remainRound;
+        Debug.Log("저장할 slotpos, remainround 값 : " + slotPos + " " + remainRound);
+        PlayerPrefs.SetInt("SlotPos", slotPos);
+        PlayerPrefs.SetInt("RemainRound", remainRound);
+        PlayerPrefs.Save();
+        Debug.Log("저장 되었습니다");
+        //audioSources[4].Play();
+        //GameCtrl.instance.resumeMsg.SetActive(false);
+        //SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
+        //ChangeScene();
+    }
+
+    void ChangeScene()
+    {
+        SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
     }
 }

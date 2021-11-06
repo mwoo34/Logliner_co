@@ -5,6 +5,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameObj04 : MonoBehaviour
 {
+    // XR rig를 움직여서 위치를 알아내기 위해 만들었지만
+    // 위치를 고정시키기로 해서 사용하지 않을 예정
+    
     public GameObject _XRrig;
     public GameObject _Left;
     public ActionBasedController _LeftCtrl;
@@ -36,14 +39,13 @@ public class GameObj04 : MonoBehaviour
 
     IEnumerator NoticeMsg()
     {
-        if (state == 0)
-            gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(5.0f);
         noticeMsg[state].SetActive(true);
-        yield return new WaitForSeconds(3.0f);
+        gameObject.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(5.0f);
         noticeMsg[state].SetActive(false);
         yield return new WaitForSeconds(10.0f);
-        GameManager.Instance._XRrig.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
+        //GameManager.Instance._XRrig.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
         //GameManager.Instance.InitXrRigPosition();
         //GameManager.Instance._XRrig.transform.localEulerAngles = new Vector3(0, 180, 0);
         SceneLoader.Instance.LoadNewScene("Chapter04_3_credit");

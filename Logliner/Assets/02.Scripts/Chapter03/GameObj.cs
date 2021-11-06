@@ -10,7 +10,7 @@ public class GameObj : MonoBehaviour
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = -1;
+    public static int checkGameSuccess = 3;
     public static int objManage;
     public GameObject collManage;
     public static int ch4FailorSucces = 1;
@@ -41,6 +41,7 @@ public class GameObj : MonoBehaviour
 
     public Button[] checkBtn;
 
+    // 정보설명, 버튼클릭, 쌍따옴표메시지
     public AudioSource[] audioSources;
 
     // 싱글톤을 위해 선언
@@ -51,7 +52,7 @@ public class GameObj : MonoBehaviour
 
     void Start()
     {
-        //audioSources[0].Play();
+        // audioSources[0].Play();
     }
 
     // 게임이 1(실패), 2(성공) 둘 다 차량 자동이동이 있기 때문에 코루틴으로 이동하는 함수 호출
@@ -93,7 +94,7 @@ public class GameObj : MonoBehaviour
         {
             // audio.clip = audioClips[0];
             // audio.Play();
-            audioSources[0].Play();
+            // audioSources[0].Play();
         }
         else
         {
@@ -115,6 +116,7 @@ public class GameObj : MonoBehaviour
 
     public void ChangeScene()
     {
+        audioSources[1].Play();
         if (checkGameSuccess == 3)
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         else if (checkGameSuccess == 4)
