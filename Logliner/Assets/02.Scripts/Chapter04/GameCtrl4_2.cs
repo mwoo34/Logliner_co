@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+
 public class GameCtrl4_2 : MonoBehaviour
 {
     // 0성공 1실패 상태
@@ -23,7 +24,6 @@ public class GameCtrl4_2 : MonoBehaviour
 
     void Start()
     {
-        //GameManager.Instance._XRrig.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
         GameManager.Instance._XRrig.transform.localEulerAngles = new Vector3(0, 180, 0);
         windowBar.GetComponent<Animator>().SetBool("onLight", true);
         playerTr = GameManager.Instance._XRrig.GetComponent<Transform>();
@@ -40,15 +40,6 @@ public class GameCtrl4_2 : MonoBehaviour
         }
         grounds[gameState].SetActive(true);
         StartCoroutine(PlayerBehaviour());
-    }
-
-    void Update()
-    {
-        // if (_distance)
-        // {
-        //     _distance = false;
-        //     StartCoroutine(NoticeMsg());
-        // }
     }
 
     IEnumerator PlayerBehaviour()
@@ -69,17 +60,6 @@ public class GameCtrl4_2 : MonoBehaviour
             GameObj04.instance._distance = true;
             GameObj04.instance.state = gameState;
             windowBar.GetComponent<Animator>().SetBool("onLight", false);
-            //StartCoroutine(NoticeMsg());
         }
     }
-
-    // IEnumerator NoticeMsg()
-    // {
-    //     yield return new WaitForSeconds(5.0f);
-    //     noticeMsg[gameState].SetActive(true);
-    //     audioSources[3].Play();
-    //     yield return new WaitForSeconds(5.0f);
-    //     noticeMsg[gameState].SetActive(false);
-    //     yield return new WaitForSeconds(10.0f);
-    // }
 }

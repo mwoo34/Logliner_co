@@ -29,7 +29,6 @@ public class WallCtrl : MonoBehaviour
             {
                 hearts[hp_count].SetActive(false);
                 GameCtrl.instance.heartCount -= 1;
-                //hearts[hp_count - 1].GetComponent<Image>().texture = empty_heart;
             }
             hearts[hp_count - 1].SetActive(true);
         }

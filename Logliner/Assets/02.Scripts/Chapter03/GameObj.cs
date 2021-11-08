@@ -10,10 +10,10 @@ public class GameObj : MonoBehaviour
     public static GameObj instance;
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = 3;
+    public static int checkGameSuccess = 2;
     public static int objManage;
     public GameObject collManage;
-    public static int ch4FailorSucces = 1;
+    // public static int ch4FailorSucces = 1;
 
     public GameObject leftCtrlSaber;
     public GameObject rightCtrlSaber;
@@ -36,7 +36,6 @@ public class GameObj : MonoBehaviour
     public GameObject landfill;
 
     // 자동 이동할 때 사용할 지형 터레인 담는 변수
-    //public GameObject[] terrain;
     public GameObject terrain1;
 
     public Button[] checkBtn;
@@ -48,11 +47,6 @@ public class GameObj : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
-        // audioSources[0].Play();
     }
 
     // 게임이 1(실패), 2(성공) 둘 다 차량 자동이동이 있기 때문에 코루틴으로 이동하는 함수 호출
@@ -69,9 +63,8 @@ public class GameObj : MonoBehaviour
         if ((checkGameSuccess == 1 || checkGameSuccess == 2) && autoMove)
         {
             autoMove = false;
-            landfill.SetActive(true);
-            truck.SetActive(true);
-            //GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
+            // landfill.SetActive(true);
+            // truck.SetActive(true);
             StartCoroutine(AutoMove());
         }
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
@@ -79,8 +72,6 @@ public class GameObj : MonoBehaviour
             truck.SetActive(false);
             GameManager.Instance._XRrig.GetComponent<NavMeshAgent>().enabled = false;
             GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = false;
-            //GameManager.Instance._XRrig.GetComponent<AudioSource>().enabled = false;
-            //xrRig.GetComponent<MoveTruck>().enabled = false;
         }
         if (objManage == 1)
         {
@@ -90,33 +81,22 @@ public class GameObj : MonoBehaviour
         {
             collManage.SetActive(false);
         }
-        if (checkGameSuccess == 0 || checkGameSuccess == -1)
-        {
-            // audio.clip = audioClips[0];
-            // audio.Play();
-            // audioSources[0].Play();
-        }
-        else
-        {
-            //audio.Stop();
-        }
     }
 
     // 트럭이 움직이기 전에 세팅을 위한 함수
     IEnumerator AutoMove()
     {
         // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
-        //terrain.SetActive(true);
-        landfill.SetActive(true);
-        truck.SetActive(true);
-        terrain1.SetActive(true);
+        //landfill.SetActive(true);
+        //truck.SetActive(true);
+        //terrain1.SetActive(true);
         yield return new WaitForSeconds(4.0f);
         GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
     }
 
     public void ChangeScene()
     {
-        audioSources[1].Play();
+        audioSources[0].Play();
         if (checkGameSuccess == 3)
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
         else if (checkGameSuccess == 4)

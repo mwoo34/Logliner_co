@@ -6,7 +6,7 @@ public class Chapter03_2 : MonoBehaviour
 {
     // 배경음, 자동차운전배경음, 
     public AudioSource[] audioSources;
-    // Start is called before the first frame update
+    
     void Start()
     {
         audioSources[0].Play();

@@ -12,23 +12,14 @@ public class LodingBar : MonoBehaviour
 
     void Start()
     {
-        //lodingBar = this.gameObject.GetComponent<Image>();
         lodingBar = GameObject.FindGameObjectWithTag("LOADINGBAR")?.GetComponent<Image>();
-        //currLoding = initLoding;
         StartCoroutine(ChargeLoding());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator ChargeLoding()
     {
         DisplayLoding();
         yield return new WaitForSeconds(0.5f);
-        
         StartCoroutine(ChargeLoding());
     }
     

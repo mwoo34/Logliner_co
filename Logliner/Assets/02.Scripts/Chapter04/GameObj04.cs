@@ -23,11 +23,6 @@ public class GameObj04 : MonoBehaviour
         instance = this;
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (_distance)
@@ -45,9 +40,6 @@ public class GameObj04 : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         noticeMsg[state].SetActive(false);
         yield return new WaitForSeconds(10.0f);
-        //GameManager.Instance._XRrig.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
-        //GameManager.Instance.InitXrRigPosition();
-        //GameManager.Instance._XRrig.transform.localEulerAngles = new Vector3(0, 180, 0);
         SceneLoader.Instance.LoadNewScene("Chapter04_3_credit");
     }
 }

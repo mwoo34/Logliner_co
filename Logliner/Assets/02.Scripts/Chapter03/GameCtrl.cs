@@ -46,26 +46,12 @@ public class GameCtrl : MonoBehaviour
     public int GameSuccess = 0;
     // 게임 상태에 따라 업데이트에서 불리는 것을 제한하기 위한 변수
     private bool _gameSuccess = true;
-    
-    // 업무 남은 횟수 표시하는 객체 받아오기
-    //public GameObject[] fuelBtn;
-    // 업무 남은 횟수를 하얀색 이미지로 표시하기 위해 담을 변수
-    //public Sprite whiteSprite;
 
     // 게임오버인지 상태 체크 변수
     private bool gameOver = true;
 
-    // 게임 실패 상태 여부 변수
-    //private bool isGameOver = false;
-    //public bool changeHeart = false;
-    // public int saveSlotPos;
-    // public int saveRemainRound;
-
     // 내부 레지스터에 저장된 데이터가 있는지 확인하기 위한 변수
     private bool isSave;
-
-    // 오디오 받을 변수
-    //private AudioSource audio;
 
     // GameCtrl 인스턴스화를 위해 선언
     public static GameCtrl instance;
@@ -87,14 +73,7 @@ public class GameCtrl : MonoBehaviour
     {
         audioSources[0].Play();
         audioSources[1].Play();
-        // for (int i = 0; i < heartCount; i++)
-        // {
-        //     hpImages[i].SetActive(false);
-        // }
-        // hpImages[heartCount].SetActive(true);
-        //resumeMsg.SetActive(false);
         StartCoroutine(StartGame());
-        //GameObj.checkGameSuccess = 0;
         GameObj.instance.leftShape[0].SetActive(false);
         GameObj.instance.rightShape[0].SetActive(false);
         GameObj.instance.leftShape[1].SetActive(true);
@@ -111,7 +90,6 @@ public class GameCtrl : MonoBehaviour
             // 오픈된 슬롯 만큼 다시 열어주는 역할
             for (int i = 0; i < slotPos; i++)
             {
-                //slotImages[i].GetComponentInChildren<Image>().sprite = changeSlotImages[i];
                 slotImages[i].SetActive(true);
             }
         }
@@ -121,7 +99,6 @@ public class GameCtrl : MonoBehaviour
         }
         // 불러왔기 때문에 저장된 데이터 전체 삭제함
         PlayerPrefs.DeleteAll();
-        //audio = gameObject.GetComponent<AudioSource>();
         GameObj.objManage = 1;
     }
 
@@ -133,9 +110,6 @@ public class GameCtrl : MonoBehaviour
         if (gameOver && heartCount == 0)
         {
             gameOver = false;
-            //audio.Stop();
-            // spawnerCube.SetActive(false);
-            // audioSources[0].Stop();
             ResumeGame();
         }
         // 게임을 성공하면 장애물 스폰과 오디오를 끄고 성공 메시지창 띄움
@@ -143,7 +117,6 @@ public class GameCtrl : MonoBehaviour
         {
             _gameSuccess = false;
             spawnerCube.SetActive(false);
-            //audio.Stop();
             audioSources[0].Stop();
             timer.SetActive(false);
             StartCoroutine(SucMsg());
@@ -168,14 +141,6 @@ public class GameCtrl : MonoBehaviour
             timer.SetActive(false);
             StartCoroutine(FailMsg());
         }
-        // 남은 라운드가 있다면 메시지창과 남은 라운드 버튼 이미지 출력
-        // else if (remainRound > 0)
-        // {
-        //     for (int i = 3; i > remainRound; i--)
-        //     {
-        //         fuelBtn[i - 1].GetComponent<Image>().sprite = whiteSprite;
-        //     }
-        // }
     }
 
     IEnumerator StartGame()
@@ -214,8 +179,6 @@ public class GameCtrl : MonoBehaviour
         SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
         resumeMsg.SetActive(false);
         Debug.Log("DataSave 들어옴");
-        //GameCtrl.instance._resume = true;
-        //SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
         int slotPos = GameCtrl.instance.slotPos;
         int remainRound = GameCtrl.instance.remainRound;
         Debug.Log("저장할 slotpos, remainround 값 : " + slotPos + " " + remainRound);
@@ -223,10 +186,6 @@ public class GameCtrl : MonoBehaviour
         PlayerPrefs.SetInt("RemainRound", remainRound);
         PlayerPrefs.Save();
         Debug.Log("저장 되었습니다");
-        //audioSources[4].Play();
-        //GameCtrl.instance.resumeMsg.SetActive(false);
-        //SceneLoader.Instance.LoadNewScene("Chapter03_1_game");
-        //ChangeScene();
     }
 
     void ChangeScene()

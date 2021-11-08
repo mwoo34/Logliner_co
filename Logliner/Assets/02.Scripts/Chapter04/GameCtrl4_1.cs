@@ -63,7 +63,6 @@ public class GameCtrl4_1 : MonoBehaviour
         }
         lodingBar.fillAmount = 0.05f;
         Debug.Log("gamestate : " + gameState);
-        //gameState = GameObj.checkGameSuccess;
         StartCoroutine(NoticeMsg());
     }
 
@@ -90,13 +89,10 @@ public class GameCtrl4_1 : MonoBehaviour
         audioObjs[1].GetComponent<AudioSource>().Play();
         audioObjs[1].GetComponent<Animator>().SetBool("audioOn", true);
         yield return new WaitForSeconds(2.0f);
-        //audioObjs[1].SetActive(false);
         for (int i = 2; i < 4; i++)
         {
             uiMsg[i].SetActive(true);
         }
-        //inputActive.SetActive(true);
-        //btn.onClick.AddListener(Display);
         yield return new WaitForSeconds(4.0f);
         Display();
     }
@@ -108,7 +104,6 @@ public class GameCtrl4_1 : MonoBehaviour
 
     public void Display()
     {
-        //uiMsg[4].SetActive(false);
         StartCoroutine(ChargeLoading());
     }
 

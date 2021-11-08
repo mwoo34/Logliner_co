@@ -16,11 +16,6 @@ public class Saber : MonoBehaviour
 
     // 바꿀 이미지 받아오는 변수
     public Texture[] slot_tex;
-    
-    void Start()
-    {
-        //au = gameObject.GetComponent<AudioSource>();
-    }
 
     void Update()
     {
@@ -30,7 +25,6 @@ public class Saber : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1, layer))
         {
             // hit한 순간에 사운드 효과
-            //au.Play();
             if (hit.collider.CompareTag("CUBE"))
                 au[0].Play();
             if (hit.collider.CompareTag("ITEMBOX"))
@@ -44,13 +38,9 @@ public class Saber : MonoBehaviour
                 // 총 3개의 슬롯을 벗어나지 않고 벤 객체 태그가 ITEMBOX인 경우
                 if (pos < 3 && hit.collider.CompareTag("ITEMBOX"))
                 {   // 해당 슬롯 위치에 이미지를 바꿔 줌
-                    //slot[pos].GetComponent<RawImage>().texture = slot_tex[pos];
                     slot[pos].SetActive(true);
                     GameCtrl.instance.slotPos += 1;
                 }
-                // 아이템 박스 3개를 다 베어서 슬롯 3개를 교체했다면 성공을 알려주기 위해 2를 대입
-                // if (GameCtrl.instance.slotPos == 3)
-                //     GameCtrl.instance.GameSuccess = 2;
                 // 0.5초 정도 후에 lock을 false에서 true로 바꿔주는 코루틴
                 StartCoroutine(LockState());
             }

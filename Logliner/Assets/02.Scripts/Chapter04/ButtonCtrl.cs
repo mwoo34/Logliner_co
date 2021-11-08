@@ -12,11 +12,6 @@ public class ButtonCtrl : MonoBehaviour
     public BoxCollider[] boxColliders;
     private int pos = 0;
 
-    void Update()
-    {
-        
-    }
-
     public void OnSelectedGreen()
     {
         Debug.Log("초록버튼셀렉");
@@ -25,12 +20,6 @@ public class ButtonCtrl : MonoBehaviour
         StartCoroutine(DelayTime());
         greenBtnAnim.SetBool("greenBtn", false);
         GameCtrl4_0.instance.greenBtn = true;
-        //boxColliders[1].isTrigger =  false;
-        // if (!_greenBtn)
-        // {
-        //     greenBtnAnim.SetBool("pushBtn", true);
-        //     _greenBtn = true;
-        // }
     }
 
     public void OnSelectedBlue()
@@ -40,12 +29,6 @@ public class ButtonCtrl : MonoBehaviour
         StartCoroutine(DelayTime());
         greenBtnAnim.SetBool("blueBtn", false);
         GameCtrl4_0.instance.blueBtn = true;
-        //boxColliders[2].isTrigger =  false;
-        // if (_greenBtn && !_blueBtn)
-        // {
-        //     blueBtnAnim.SetBool("pushBtn", true);
-        //     _blueBtn = true;
-        // }
     }
 
     public void OnSelectedRed()
@@ -55,11 +38,6 @@ public class ButtonCtrl : MonoBehaviour
         StartCoroutine(DelayTime());
         greenBtnAnim.SetBool("redBtn", false);
         GameCtrl4_0.instance.redBtn = true;
-        // if (!_greenBtn)
-        // {
-        //     greenBtnAnim.SetBool("pushBtn", true);
-        //     _greenBtn = true;
-        // }
     }
 
     public void OnSelectedStop()
@@ -67,11 +45,6 @@ public class ButtonCtrl : MonoBehaviour
         blueBtnAnim.SetBool("stopBtn", false);
         boxColliders[pos].isTrigger = true;
         GameCtrl4_0.instance.stopBtn = true;
-        // if (!_greenBtn)
-        // {
-        //     greenBtnAnim.SetBool("pushBtn", true);
-        //     _greenBtn = true;
-        // }
     }
 
     IEnumerator DelayTime()

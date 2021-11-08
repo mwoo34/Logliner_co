@@ -23,22 +23,18 @@ public class MoveTruck : MonoBehaviour
     public Transform landTr;
     // 네비게이션 사용을 위한 변수
     public NavMeshAgent agent;
-    //public float traceDist = 1.0f;
-    //public float msgDist = 2.0f;
-    //private bool moveState = false;
-    //public float lookUpDist = 45.0f;
 
     // 게임 상태에 따라 메시지 담을 변수
     public GameObject noticeMsg1;
     int pos = 0;
 
+    public GameObject truck;
     // 지형 터레인을 담을 변수
     public GameObject terrain;
     // 도착할 위치를 위해 매립지 담을 변수
     public GameObject landfill;
     // 죽은 생물 슬롯을 담을 변수
     public GameObject[] slot;
-    //private RectTransform slotRectTrans;
 
     // 성공 상태에서 작업을 계속할지 수락 거절을 위한 버튼
     public Button[] successBtn;
@@ -49,26 +45,22 @@ public class MoveTruck : MonoBehaviour
     // 스크립트 시작할 때 초기값 설정
     void Start()
     {
+        landfill.SetActive(true);
         // 주인공, 매립지 위치 가져옴, agent 설정하고 NavMeshAgent 스크립트 활성화
         playerTr = GetComponent<Transform>();
         landTr = GameObject.FindWithTag("LANDFILL").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-        // 주인공 시작위치 변경하고 정화세이버에 사용한 컨트롤러 꺼줌
-        //playerTr.transform.SetPositionAndRotation(new Vector3(0f, 0f, 7.0f), Quaternion.Euler(0f, 0f, 0f));
+        // 주인공 정화세이버에 사용한 컨트롤러 꺼줌
         GameObj.instance.leftShape[1].SetActive(false);
         GameObj.instance.rightShape[1].SetActive(false);
         GameObj.instance.leftShape[0].SetActive(true);
         GameObj.instance.rightShape[0].SetActive(true);
+
         // 1실패 2성공의 값을 pos에 담고 그에 맞는 메시지창을 닫음
         pos = GameObj.checkGameSuccess;
         noticeMsg1 = GameObj.instance.uiMsg[pos - 1];
-        // 지형과 매립지를 활성화 시키고 오디오를 실행
-        //terrain.SetActive(true);
-        //landfill.SetActive(true);
-        //this.gameObject.GetComponent<AudioSource>().enabled = true;
-        // 게임 성공시에만 생물 슬롯을 보여주기 위한 기능
         if (pos == 2)
         {
             for (int i = 0; i < 3; i++)
@@ -76,7 +68,8 @@ public class MoveTruck : MonoBehaviour
                 slot[i].SetActive(true);
             }
         }
-        //StartCoroutine(NavMove());
+        truck.SetActive(true);
+        terrain.SetActive(true);
         // 자동 이동 시작하는 코루틴
         if (GameObj.checkGameSuccess == 1 || GameObj.checkGameSuccess == 2)
             StartCoroutine(NavMove());
@@ -133,7 +126,6 @@ public class MoveTruck : MonoBehaviour
         {
             case State.IDLE:
                 agent.isStopped = true;
-                //moveState = true;
                 // 도착해서 모든 코루틴을 끄고 메시지창 코루틴 실행
                 StopAllCoroutines();
                 StartCoroutine(NoticeMsg());
@@ -176,12 +168,7 @@ public class MoveTruck : MonoBehaviour
             slot[i + 3].SetActive(true);
             audioSources[0].Play();
         }
-        //yield return new WaitForSeconds(1.0f);
         yield return new WaitForSeconds(5.0f);
-        // for (int i = 0; i < 3; i++)
-        // {
-        //     slot[i].SetActive(false);
-        // }
         for (int i = 0; i < 3; i++) 
         {
             slot[i + 3].SetActive(false);
@@ -193,8 +180,6 @@ public class MoveTruck : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         GameObj.instance.uiMsg[2].SetActive(false);
         yield return new WaitForSeconds(1.0f);
-        
-        //yield return new WaitForSeconds(1.0f);
         // 다시 업무를 이어서 할지 수락과 거절로 묻는 기능
         GameObj.instance.uiMsg[3].SetActive(true);
         audioSources[1].Play();
@@ -221,19 +206,14 @@ public class MoveTruck : MonoBehaviour
     // 활성화 된 객체를 끄고 사용자를 원래 위치로 놓고 변수 값에 따라 성공, 실패 씬으로 이동
     IEnumerator ChangeScene() {
         yield return new WaitForSeconds(2.0f);
-        // terrain.SetActive(false);
-        // landfill.SetActive(false);
         playerTr.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
-        //this.gameObject.GetComponent<AudioSource>().enabled = false;
         GameObj.instance.uiMsg[3].SetActive(false);
         // 게임매니저에 알리기위해 기존과 다른 실패3과 성공4를 넣어서 보내고 챕터 이동
         if (GameObj.checkGameSuccess == 1)
         {
             GameObj.checkGameSuccess = 3;
             SceneLoader.Instance.LoadNewScene("Chapter04_0_fail");
-            // terrain.SetActive(false);
-            // landfill.SetActive(false);
             GameObj.instance.leftCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
             GameObj.instance.rightCtrlSaber.GetComponent<Raycast04_0>().enabled = true;
         }
@@ -241,8 +221,6 @@ public class MoveTruck : MonoBehaviour
         {
             GameObj.checkGameSuccess = 4;
             SceneLoader.Instance.LoadNewScene("Chapter04_1_blackUniverse");
-            // terrain.SetActive(false);
-            // landfill.SetActive(false);
         }
         yield return new WaitForSeconds(1.0f);
         terrain.SetActive(false);

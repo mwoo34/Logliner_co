@@ -14,11 +14,6 @@ public class HeadCollider : MonoBehaviour
 
     public AudioSource audioSource;
 
-    void Start()
-    {
-        
-    }
-
     // 게임 매니저에서 하트 객체를 가져옴
     void Update()
     {
@@ -32,7 +27,6 @@ public class HeadCollider : MonoBehaviour
             Destroy(coll.gameObject);
             hp_count = GameCtrl.instance.heartCount;
             if (hp_count > 0) {
-                //hearts[hp_count - 1].GetComponent<RawImage>().texture = empty_heart;
                 hearts[hp_count].SetActive(false);
                 GameCtrl.instance.heartCount -= 1;
             }

@@ -21,11 +21,6 @@ public class Timer : MonoBehaviour
     // 시간은 70초로 초기 설정과 진행중인 상태를 true로 넣음
     void Start()
     {
-        // if (GameObj.checkGameSuccess == 0)
-        // {
-        //     startTime = Time.time + 20;
-        //     progressGame = true;
-        // }
         progressGame = true;
         flag = true;
     }
@@ -35,7 +30,6 @@ public class Timer : MonoBehaviour
     {
         if (progressGame && GameObj.checkGameSuccess == 0)
         {
-            //startTime = Time.time + 20;
             ShowTime();
             
         }
@@ -72,7 +66,6 @@ public class Timer : MonoBehaviour
                 GameCtrl.instance.GameSuccess = 2;
                 Debug.Log("GameSuccess 값 : " + GameCtrl.instance.GameSuccess);
                 progressGame = false;
-                //GameObj.instance.checkGame = 1;
             }
         }
         else
