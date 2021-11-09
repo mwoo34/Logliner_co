@@ -113,7 +113,6 @@ public class MoveTruck : MonoBehaviour
         if (agent.remainingDistance >= 2.0f)
         {
             Vector3 direction = agent.desiredVelocity;
-
             if (direction.sqrMagnitude >= 0.1f * 0.1f)
             {
                 Quaternion rot = Quaternion.LookRotation(direction);
@@ -176,7 +175,7 @@ public class MoveTruck : MonoBehaviour
         noticeMsg1.SetActive(true);
         if (pos == 1) audioSources[3].Play();
         else audioSources[1].Play();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         noticeMsg1.SetActive(false);
         yield return new WaitForSeconds(2.0f);
         // 2 성공의 경우 사용자에게 슬롯 확대와 메시지창을 보여주기 위한 함수

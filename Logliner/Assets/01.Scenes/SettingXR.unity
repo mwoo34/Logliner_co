@@ -2207,6 +2207,7 @@ MonoBehaviour:
   rightShape:
   - {fileID: 6845036448938232192}
   - {fileID: 1704364779}
+  autoMove: 1
   slot:
   - {fileID: 1667235608}
   - {fileID: 1328810844}

@@ -129,7 +129,7 @@ public class GameCtrl4_1 : MonoBehaviour
         Debug.Log(gameState + "활성화");
         if (value == 40 || value == 100) {
             dissolve[gameState].SetActive(true);
-            yield return new WaitForSeconds(17.0f);
+            yield return new WaitForSeconds(16.0f);
             ChangeScene();
         }
     }
