@@ -14,43 +14,59 @@ public class ButtonCtrl : MonoBehaviour
 
     public void OnSelectedGreen()
     {
-        Debug.Log("초록버튼셀렉");
-        greenBtnAnim.SetBool("pushBtn", true);
-        boxColliders[pos].isTrigger = true;
-        StartCoroutine(DelayTime());
-        greenBtnAnim.SetBool("greenBtn", false);
-        GameCtrl4_0.instance.greenBtn = true;
+        if (!_greenBtn)
+        {
+            Debug.Log("초록버튼셀렉");
+            greenBtnAnim.SetBool("pushBtn", true);
+            boxColliders[pos].isTrigger = true;
+            StartCoroutine(DelayTime());
+            greenBtnAnim.SetBool("greenBtn", false);
+            GameCtrl4_0.instance.greenBtn = true;
+            _greenBtn = true;
+        }
     }
 
     public void OnSelectedBlue()
     {
-        blueBtnAnim.SetBool("pushBtn", true);
-        boxColliders[pos].isTrigger = true;
-        StartCoroutine(DelayTime());
-        greenBtnAnim.SetBool("blueBtn", false);
-        GameCtrl4_0.instance.blueBtn = true;
+        if (!_blueBtn && _greenBtn)
+        {
+            blueBtnAnim.SetBool("pushBtn", true);
+            boxColliders[pos].isTrigger = true;
+            StartCoroutine(DelayTime());
+            greenBtnAnim.SetBool("blueBtn", false);
+            GameCtrl4_0.instance.blueBtn = true;
+            _blueBtn = true;
+        }
     }
 
     public void OnSelectedRed()
     {
-        redBtnAnim.SetBool("pushBtn", true);
-        boxColliders[pos].isTrigger = true;
-        StartCoroutine(DelayTime());
-        greenBtnAnim.SetBool("redBtn", false);
-        GameCtrl4_0.instance.redBtn = true;
+        if (!_redBtn && _blueBtn)
+        {
+            redBtnAnim.SetBool("pushBtn", true);
+            boxColliders[pos].isTrigger = true;
+            StartCoroutine(DelayTime());
+            greenBtnAnim.SetBool("redBtn", false);
+            GameCtrl4_0.instance.redBtn = true;
+            _redBtn = true;
+        }
     }
 
     public void OnSelectedStop()
     {
-        blueBtnAnim.SetBool("stopBtn", false);
-        boxColliders[pos].isTrigger = true;
-        GameCtrl4_0.instance.stopBtn = true;
+        if (!_stopBtn && _redBtn)
+        {
+            blueBtnAnim.SetBool("stopBtn", false);
+            boxColliders[pos].isTrigger = true;
+            GameCtrl4_0.instance.stopBtn = true;
+            _stopBtn = true;
+        }
     }
 
     IEnumerator DelayTime()
     {
-        yield return new WaitForSeconds(2.0f);
         pos += 1;
+        yield return new WaitForSeconds(1.0f);
         boxColliders[pos].isTrigger =  false;
     }
 }

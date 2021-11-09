@@ -58,6 +58,13 @@ public class GameCtrl4_3 : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         fail_illust[7].SetActive(false);
         yield return new WaitForSeconds(1.0f);
-        //SceneLoader.Instance.LoadNewScene("Chapter00");
+        ChangeScene();
+        
+    }
+    void ChangeScene()
+    {
+        GameObj.checkGameSuccess = -1;
+        GameObj.instance.autoMove = true;
+        SceneLoader.Instance.LoadNewScene("Chapter03_0");
     }
 }

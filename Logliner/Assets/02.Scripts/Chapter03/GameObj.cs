@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameObj : MonoBehaviour
 {
     // 씬 SettingXR 게임매니저 인스턴스화를 위한 변수
     public static GameObj instance;
 
-    // 게임 상태여부 체크로 1은 실패 2는 성공상태
-    public static int checkGameSuccess = 2;
+    // 게임 상태여부 체크로 1은 실패 2는 성공상태 // 3_2_landFill
+    // 3은 실패 4는 성공상태 // 4_0_fail, 4_1_blackUniverse 에서 사용
+    public static int checkGameSuccess = -1;
     public static int objManage;
     public GameObject collManage;
     // public static int ch4FailorSucces = 1;
@@ -21,7 +23,7 @@ public class GameObj : MonoBehaviour
     public GameObject[] rightShape;
 
     // Update에서 호출 제한을 두기 위한 변수
-    private bool autoMove = true;
+    public bool autoMove = true;
 
     // 슬롯 객체 담는 변수
     public GameObject[] slot;
@@ -54,7 +56,6 @@ public class GameObj : MonoBehaviour
     {
         checkBtn[0].onClick.AddListener(ChangeScene);
         checkBtn[1].onClick.AddListener(ChangeScene);
-        Debug.Log("Checkgame : " + checkGameSuccess);
         if (checkGameSuccess == 0)
         {
             leftCtrlSaber.GetComponent<Saber>().enabled = true;
@@ -63,8 +64,6 @@ public class GameObj : MonoBehaviour
         if ((checkGameSuccess == 1 || checkGameSuccess == 2) && autoMove)
         {
             autoMove = false;
-            // landfill.SetActive(true);
-            // truck.SetActive(true);
             StartCoroutine(AutoMove());
         }
         if (checkGameSuccess == 3 || checkGameSuccess == 4)
@@ -86,11 +85,8 @@ public class GameObj : MonoBehaviour
     // 트럭이 움직이기 전에 세팅을 위한 함수
     IEnumerator AutoMove()
     {
-        // 지형, 매립지, 트럭을 활성화하고 잠시 기다렸다가 MoveTruck 스크립트 활성화 시킴
-        //landfill.SetActive(true);
-        //truck.SetActive(true);
-        //terrain1.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
+        // MoveTruck 스크립트 활성화 시킴
+        yield return new WaitForSeconds(3.0f); // 4.0f를 3.0f로 수정 ######
         GameManager.Instance._XRrig.GetComponent<MoveTruck>().enabled = true;
     }
 

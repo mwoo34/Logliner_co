@@ -4058,6 +4058,7 @@ MonoBehaviour:
   landTr: {fileID: 1638079236}
   agent: {fileID: 392721213}
   noticeMsg1: {fileID: 0}
+  truck: {fileID: 1125457324}
   terrain: {fileID: 2721550658314818832}
   landfill: {fileID: 1638079232}
   slot:
@@ -4068,8 +4069,8 @@ MonoBehaviour:
   - {fileID: 1161326444}
   - {fileID: 2052406073}
   successBtn:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 982678717}
+  - {fileID: 1105908047}
   audioSources:
   - {fileID: 392721215}
   - {fileID: 392721218}
@@ -7689,6 +7690,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: e782e566b343e3d4e85ef70079922c86, type: 3}
   - {fileID: 2800000, guid: 1051473aca9af5744a8ec9023d2ea16d, type: 3}
   - {fileID: 2800000, guid: a70bcbc7cae99744d9b82d1799043423, type: 3}
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
 --- !u!114 &642749301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11067,6 +11070,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: e782e566b343e3d4e85ef70079922c86, type: 3}
   - {fileID: 2800000, guid: 1051473aca9af5744a8ec9023d2ea16d, type: 3}
   - {fileID: 2800000, guid: a70bcbc7cae99744d9b82d1799043423, type: 3}
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
 --- !u!114 &967841552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17936,7 +17941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1638079233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20630,7 +20635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1922377557
 Transform:
   m_ObjectHideFlags: 0
@@ -20640,7 +20645,7 @@ Transform:
   m_GameObject: {fileID: 1922377556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.05356, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 312014944}
   m_RootOrder: 1

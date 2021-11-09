@@ -17,6 +17,9 @@ public class Saber : MonoBehaviour
     // 바꿀 이미지 받아오는 변수
     public Texture[] slot_tex;
 
+    public GameObject leftController;
+    public GameObject rightController;
+
     void Update()
     {
         // 게임매니저에서 settingXR로 슬롯이미지 객체를 가져옴

@@ -42,8 +42,7 @@ public class MoveTruck : MonoBehaviour
     // 슬롯확대효과음, 정보설명, 클릭, 쌍따옴표메시지
     public AudioSource[] audioSources;
 
-    // 스크립트 시작할 때 초기값 설정
-    void Start()
+    void OnEnable()
     {
         landfill.SetActive(true);
         // 주인공, 매립지 위치 가져옴, agent 설정하고 NavMeshAgent 스크립트 활성화
@@ -74,6 +73,39 @@ public class MoveTruck : MonoBehaviour
         if (GameObj.checkGameSuccess == 1 || GameObj.checkGameSuccess == 2)
             StartCoroutine(NavMove());
     }
+
+    // 스크립트 시작할 때 초기값 설정
+    // void Start()
+    // {
+    //     landfill.SetActive(true);
+    //     // 주인공, 매립지 위치 가져옴, agent 설정하고 NavMeshAgent 스크립트 활성화
+    //     playerTr = GetComponent<Transform>();
+    //     landTr = GameObject.FindWithTag("LANDFILL").GetComponent<Transform>();
+    //     agent = GetComponent<NavMeshAgent>();
+    //     agent.updateRotation = false;
+    //     this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+    //     // 주인공 정화세이버에 사용한 컨트롤러 꺼줌
+    //     GameObj.instance.leftShape[1].SetActive(false);
+    //     GameObj.instance.rightShape[1].SetActive(false);
+    //     GameObj.instance.leftShape[0].SetActive(true);
+    //     GameObj.instance.rightShape[0].SetActive(true);
+
+    //     // 1실패 2성공의 값을 pos에 담고 그에 맞는 메시지창을 닫음
+    //     pos = GameObj.checkGameSuccess;
+    //     noticeMsg1 = GameObj.instance.uiMsg[pos - 1];
+    //     if (pos == 2)
+    //     {
+    //         for (int i = 0; i < 3; i++)
+    //         {
+    //             slot[i].SetActive(true);
+    //         }
+    //     }
+    //     truck.SetActive(true);
+    //     terrain.SetActive(true);
+    //     // 자동 이동 시작하는 코루틴
+    //     if (GameObj.checkGameSuccess == 1 || GameObj.checkGameSuccess == 2)
+    //         StartCoroutine(NavMove());
+    // }
 
     // 도착지를 계속 탐색해서 찾아가는 함수
     void Update()
