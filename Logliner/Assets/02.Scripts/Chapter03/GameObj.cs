@@ -12,7 +12,7 @@ public class GameObj : MonoBehaviour
 
     // 게임 상태여부 체크로 1은 실패 2는 성공상태 // 3_2_landFill
     // 3은 실패 4는 성공상태 // 4_0_fail, 4_1_blackUniverse 에서 사용
-    public static int checkGameSuccess = -1;
+    public static int checkGameSuccess = 3;
     public static int objManage;
     public GameObject collManage;
     // public static int ch4FailorSucces = 1;

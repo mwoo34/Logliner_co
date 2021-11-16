@@ -40,6 +40,6 @@ public class GameObj04 : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         noticeMsg[state].SetActive(false);
         yield return new WaitForSeconds(10.0f);
-        SceneLoader.Instance.LoadNewScene("Chapter04_3_credit");
+        //SceneLoader.Instance.LoadNewScene("Chapter04_3_credit");
     }
 }
